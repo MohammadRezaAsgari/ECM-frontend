@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>مدیریت قراردادها - خانه</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/bnazanb.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/css/Login-Form-Basic-icons.css">
+    <link rel="stylesheet" href="assets/css/css/Projects-Grid-images.css">
+    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-1.css">
+    <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-2.css">
+    <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min-1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <main>
+        <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light" id="mainNav" style="margin-bottom:0;background:var(--bs-indigo);border-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;width:100%;padding-top:0;">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navcol-1"><a class="btn" role="button" rel=""><i class="fa fa-sign-out" style="font-size:36px;color:white;"></i></a></div><span style="font-family:bnazanb;color:rgb(255,255,255);margin-right:10px;">سامانه مدیریت قرارداد های ارزیابی</span><i class="fa fa-handshake-o" style="font-size:36px;color:white;"></i>
+            </div>
+        </nav>
+        <div class="row d-flex flex-row-reverse justify-content-center align-items-center align-content-center m-auto" style="width:80%;border-bottom-style:solid;border-bottom-color:var(--bs-emphasis-color);padding:0;padding-right:0;padding-bottom:10px;padding-top:20px;padding-left:0;">
+            <div class="col m-auto" style="text-align:right;width:18%;max-width:18%;min-width:18%;"><input type="text" class="m-auto" id="search_form_product" placeholder="نام سامانه" style="margin:0 0px;margin-right:55px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:10px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:40px;width:100%;min-width:100%;max-width:100%;padding-top:0;"></div>
+            <div class="col m-auto" style="text-align:right;max-width:18%;width:18%;"><input type="text" class="m-auto" id="search_form_organization" placeholder="نام سازمان" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:10px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:40px;width:100%;min-width:100%;max-width:100%;"></div>
+            <div class="col m-auto" style="text-align:right;max-width:18%;width:18%;"><input type="text" class="m-auto" id="search_form_id" placeholder="شماره پرونده" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:10px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:40px;width:100%;min-width:100%;max-width:100%;"></div><script>jalaliDatepicker.startWatch()</script>
+            <div class="col m-auto" style="text-align:right;width:18%;max-width:18%;"><input data-jdp="" id="search_form_date" placeholder="تاریخ" style="text-align:right;border-radius:10px;border-width:1px;margin:0 0px;height:40px;font-family:bnazanb;color:var(--bs-emphasis-color);min-width:100%;max-width:100%;width:100%;margin-top:10px;margin-right:50px;margin-bottom:10px;margin-left:10px;padding-right:5px;padding-left:0px;margin:auto;"></div>
+            <div class="col m-auto" style="text-align:right;width:18%;max-width:18%;"><input data-jdp="" id="search_form_date" placeholder="تاریخ" style="text-align:right;border-radius:10px;border-width:1px;margin:0 0px;height:40px;font-family:bnazanb;color:var(--bs-emphasis-color);min-width:100%;max-width:100%;width:100%;margin-top:10px;margin-right:50px;margin-bottom:10px;margin-left:10px;padding-right:5px;padding-left:0px;margin:auto;"></div>
+            <div class="col m-auto" style="text-align:right;width:18%;max-width:18%;margin-right:0;padding-right:60px;padding-left:0;"><button class="btn btn-primary m-auto" id="search_form_submit" type="submit" style="width: 109px;font-family: bnazanb;overflow: auto;position: static;display: inline-block;padding-right: 5px;padding-left: 0px;height: 47px;min-width: auto;max-width: none;margin: 0;margin-top: 0;margin-right: 0;margin-bottom: 0;margin-left: 0;text-align: center;border-style: solid;border-radius: 12px;">جستجو</button></div>
+        </div>
+        <div class="card mx-auto" style="width: 80%;margin: 10px;padding: 10px;margin-bottom: 58px;border-style: none;">
+            <h1 style="text-align:right;font-family:bnazanb;"><button class="btn btn-primary" type="" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: inline-block;background: var(--bs-success);margin: 0;margin-left: 0;width: 53px;min-width: auto;max-width: none;height: 40px;margin-top: 0;margin-right: 10px;margin-bottom: 0;padding-right: 0;padding-left: 0;font-weight: bold;font-size: 15px;text-align: center;padding-top: 0;padding-bottom: 0;border-radius: 15px;border: 1px solid var(--bs-success) ;">افزودن</button>قراردادها</h1>
+            <h3 style="text-align:right;font-family:bnazanb;">هیچ رکوردی وجود ندارد</h3>
+            <div class="card-body" style="display:none;margin-top:10px;background:#ffffff;border-radius:30px;box-shadow:0px 0px 5px 1px #000000;">
+                <div class="row">
+                    <div class="col">
+                        <h4 style="text-align:right;margin-bottom:1px;font-family:bnazanb;">شرکت بیسار</h4>
+                    </div>
+                    <div class="col">
+                        <h4 style="text-align:right;font-family:bnazanb;">سامانه فلان</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4 style="text-align:right;margin-bottom:1px;font-family:bnazanb;">تاریخ</h4>
+                    </div>
+                    <div class="col">
+                        <h4 style="text-align:right;margin-bottom:1px;font-family:bnazanb;">شماره قرارداد</h4>
+                    </div>
+                </div><button class="btn btn-primary" type="button" style="font-family:bnazanb;background:#00aacc;border-style:none;">مدیریت</button>
+            </div>
+        </div>
+    </main>
+    <footer style="height:100%;display:block;">
+        <div class="container" style="display: none;box-shadow: 0px 0px 13px 3px var(--bs-emphasis-color);border-radius: 30px;position: sticky;width: 60%;padding-bottom: 12px;padding-top: 0px;opacity: 1;backdrop-filter: opacity(1);background: #ffffff;text-align: center;margin-bottom: 197px;">
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                <div class="col" style="width:100%;">
+                    <h1 style="text-align: center;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 20px;margin-bottom: 0;">تعریف قرارداد جدید</h1>
+                </div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                <div class="col" style="width:50%;"><input type="email" name="email" placeholder="نام سازمان" required="" style="margin:0 0px;margin-right:10px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:80%;width:100%;display:flex;"></div>
+                <div class="col" style="padding-bottom:0px;padding-top:0px;margin-right:0px;width:50%;"><input type="email" name="email" placeholder="نام سامانه" required="" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:80%;width:100%;display:flex;"></div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                <div class="col" style="width:50%;"><input type="date" placeholder="تاریخ" style="border-radius:10px;border-width:1px;margin:10px;padding:1px 5px 1px 0px;height:80%;text-align:center;font-family:bnazanb;display:flex;width:100%;padding-top:0px;margin-top:20px;" required=""></div>
+                <div class="col" style="width:50%;"><input type="email" name="email" placeholder="شماره پرونده" required="" style="margin:0 0px;margin-right:10px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:80%;width:100%;display:flex;max-width:100%;"></div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width:100%;margin-top:0;margin-right:0;margin-left:0;text-align:center;">
+                <div class="col" style="width:30%;">
+                    <div class="row" style="width:100%;">
+                        <div class="col"><button class="btn btn-primary justify-content-center align-items-center" type="submit" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                        <div class="col"><button class="btn btn-primary" type="" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ایجاد</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="display: none;box-shadow: 0px 0px 13px 3px var(--bs-emphasis-color);border-radius: 30px;position: sticky;width: 60%;padding-bottom: 12px;padding-top: 0px;opacity: 1;backdrop-filter: opacity(1);background: #ffffff;text-align: center;margin-bottom: 197px;">
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                <div class="col" style="width:100%;">
+                    <h1 style="text-align:center;font-family:bnazanb;width:100%;padding-right:0;margin-top:20px;margin-bottom:0;">ویرایش قرارداد</h1>
+                </div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                <div class="col" style="width:50%;"><input type="email" name="email" placeholder="نام سازمان" required="" style="margin:0 0px;margin-right:10px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:80%;width:100%;display:flex;"></div>
+                <div class="col" style="padding-bottom:0px;padding-top:0px;margin-right:0px;width:50%;"><input type="email" name="email" placeholder="نام سامانه" required="" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:80%;width:100%;display:flex;"></div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                <div class="col" style="width:50%;"><input type="date" placeholder="تاریخ" style="border-radius:10px;border-width:1px;margin:10px;padding:1px 5px 1px 0px;height:80%;text-align:center;font-family:bnazanb;display:flex;width:100%;padding-top:0px;margin-top:20px;" required=""></div>
+                <div class="col" style="width:50%;"><input type="email" name="email" placeholder="شماره پرونده" required="" style="margin:0 0px;margin-right:10px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:80%;width:100%;display:flex;max-width:100%;"></div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width:100%;margin-top:0;margin-right:0;margin-left:0;text-align:center;">
+                <div class="col" style="width:30%;">
+                    <div class="row" style="width:100%;">
+                        <div class="col"><button class="btn btn-primary justify-content-center align-items-center" type="submit" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                        <div class="col"><button class="btn btn-primary" type="" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/js/bold-and-bright.js"></script>
+</body>
+
+</html>
