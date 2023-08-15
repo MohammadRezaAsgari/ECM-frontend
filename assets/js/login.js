@@ -57,7 +57,7 @@ async function postData(username, password) {
         username: username,
         password: password,
     }
-    const response = await fetch(baseUrl+'api/token/', {
+    const response = await fetch(tokenObtainPairViewUrl, {
       method: "POST", 
       mode: "cors", 
       cache: "no-cache", 
@@ -86,7 +86,7 @@ async function postData(username, password) {
         alert('نام کاربری یا رمز عبور اشتباه است. لطفا دوباره امتحان کنید!')
       else{
         createCookie('token',access,1)
-        window.location.href = "home.html"
+        window.location.href = "index.html"
       }
     })
     

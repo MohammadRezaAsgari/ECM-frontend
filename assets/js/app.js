@@ -1,4 +1,6 @@
-baseUrl = 'http://127.0.0.1:8000/'
+const baseUrl = 'http://127.0.0.1:8000/'
+const tokenObtainPairViewUrl = baseUrl + 'api/token/'
+const checkTokenViewUrl = baseUrl + 'api/user/checktoken/'
 
 
 
@@ -32,3 +34,20 @@ function createCookie(name,value,days) {
     createCookie(name,"",-1);
   }
   
+
+
+  async function checkToken(token) {
+    const response = await fetch(checkTokenViewUrl,{
+        method: 'GET',
+        withCredentials: true,
+        credentials: 'include',
+        headers: {
+            Authentication: `Bearer {${token}}`,
+            'Content-Type': 'application/json'
+      }
+    }
+    ).then(data => {
+        return data.json();
+    })
+    return response 
+  }
