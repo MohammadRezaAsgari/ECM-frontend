@@ -24,7 +24,7 @@ async function postData(username, password) {
     return response 
   }
 
-  loginForm.addEventListener('submit', event=>{
+loginForm.addEventListener('submit', event=>{
     event.preventDefault()
     const username = document.getElementById('username').value
     const password = document.getElementById('password').value
@@ -38,7 +38,7 @@ async function postData(username, password) {
         createCookie('token',access,1)
         window.location.href = "home"
       }
-    }).catch(error => alert('اشکال در سرور!'))
+    }).catch(err=> alert(`${err} : خطایی رخ داده`) )
     
 })
 

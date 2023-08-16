@@ -7,14 +7,18 @@ if (!token){
     setTimeout(checkTokenValidation, 5000)
 }
 
+checkTokenValidation()
 async function checkTokenValidation () {
-    response = checkToken(token)
+    response = fetchUrl(token,checkTokenViewUrl,"GET")
 
-    response.then( access => {
-        if (access!=='OK'){
+    response.then( (response) => {
+        if (response.access!='OK'){
             alert('نشست شما به پایان رسیده است!لطفا دوباره وارد شوید.')
             window.location.href = "index"
         }
+    }).catch(error => {
+        alert(`${error} : خطایی رخ داده`) 
+        window.location.href = "index"
     })
 }    
 

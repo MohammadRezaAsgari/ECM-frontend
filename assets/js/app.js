@@ -15,7 +15,7 @@ function createCookie(name,value,days) {
     document.cookie = name + "=" + value + expires + "; path=/";
   }
   
-  function readCookie(name) {
+function readCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
@@ -30,8 +30,37 @@ function createCookie(name,value,days) {
     return null;
   }
   
-  function eraseCookie(name) {
+function eraseCookie(name) {
     createCookie(name,"",-1);
   }
   
+async function fetchUrl(Token,url,method) {
+  const headers = {
+    'Authorization': `Bearer ${Token}`,
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Accept': 'application/json; ',
+    }
+    const the_response = await fetch(url, { headers ,
+        method: method, 
+        mode: "cors", 
+    }).then(response => response.json())
+    //.then(jsonResponse => jsonResponse.access)
+    return the_response 
 
+}
+
+
+async function fetchDelete(Token,url,method) {
+    const headers = {
+      'Authorization': `Bearer ${Token}`,
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Accept': 'application/json; ',
+      }
+      const the_response = await fetch(url, { headers ,
+          method: method, 
+          mode: "cors", 
+      }).then(response => response)
+      //.then(jsonResponse => jsonResponse.access)
+      return the_response 
+  
+  }
