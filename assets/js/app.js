@@ -1,7 +1,8 @@
 const baseUrl = 'http://127.0.0.1:8000/'
 const tokenObtainPairViewUrl = baseUrl + 'api/token/'
+const tokenRefreshViewUrl = baseUrl + 'api/token/refresh/'
 const checkTokenViewUrl = baseUrl + 'api/user/checktoken/'
-const assessmentsListViewUrl = baseUrl + 'api/assessments/'
+const assessmentsListCreateViewUrl = baseUrl + 'api/assessments/'
 
 
 function createCookie(name,value,days) {
@@ -63,4 +64,19 @@ async function fetchDelete(Token,url,method) {
       //.then(jsonResponse => jsonResponse.access)
       return the_response 
   
+  }
+
+  async function postData(body, method, url) {
+    Token = readCookie('token')
+    const response = await fetch(url, {
+      method: method, 
+      mode: "cors", 
+       headers: {
+            'Authorization': `Bearer ${Token}`,
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept' : 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(body), 
+    }).then( response=> response.json())
+    return response 
   }
