@@ -3,6 +3,7 @@ const tokenObtainPairViewUrl = baseUrl + 'api/token/'
 const tokenRefreshViewUrl = baseUrl + 'api/token/refresh/'
 const checkTokenViewUrl = baseUrl + 'api/user/checktoken/'
 const assessmentsListCreateViewUrl = baseUrl + 'api/assessments/'
+const searchAssessmentUrl = assessmentsListCreateViewUrl
 
 
 function createCookie(name,value,days) {
@@ -45,6 +46,23 @@ async function fetchUrl(Token,url,method) {
         method: method, 
         mode: "cors", 
     }).then(response => response.json())
+    //.then(jsonResponse => jsonResponse.access)
+    return the_response 
+
+}
+
+
+
+async function fetcphoto(Token,url,method) {
+  const headers = {
+    'Authorization': `Bearer ${Token}`,
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Accept': 'application/json; ',
+    }
+    const the_response = await fetch(url, { headers ,
+        method: method, 
+        mode: "cors", 
+    }).then(response => response.blob())
     //.then(jsonResponse => jsonResponse.access)
     return the_response 
 
