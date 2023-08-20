@@ -107,14 +107,23 @@ function postManageBtnHandler(event) {
     document.getElementById('product-name-details').value =  result.product_name
     document.getElementById('date-details').value =  result.date_of_contract
     document.getElementById('contract-number-details').value =  result.contract_number
-
-    response2 = fetcphoto(token,assessmentsListCreateViewUrl+'photo/'+`${result.contract_number}`,"GET")
+    // contract_photo = result.contract_photo
+    // if (!!contract_photo){
+    //     imageUrl = result.contract_photo.photo
+    //     document.getElementById('existing-image').href =  imageUrl
+    //     document.getElementById('existing-image').style.display = 'block'
+    // }
+    response2 = fetcphoto(token,assessmentsListCreateViewUrl+'photo/'+`${selected_post_id}`,"GET")
     response2.then( res=>{
-        const imageUrl = URL.createObjectURL(res)
-        //console.log(imageUrl) check the image
-        document.getElementById('existing-image').href =  imageUrl
+        if(res.type==='image/jpeg'){
+            const imageUrl = URL.createObjectURL(res)
+            document.getElementById('existing-image-download-btn').href =  imageUrl
+            document.getElementById('existing-image-download-btn').style.display = 'flex'
+        }
     }
-    )
+    ).catch(err =>  {
+        alert(`${err} : خطایی رخ داده`) 
+    })
     
     managePostWindows.style.display = 'block'
     }).catch(err =>  {
@@ -171,6 +180,9 @@ function newPostHanlder(event){
         date_of_contract: formFields.date.value,
         contract_number: formFields.contract_num.value 
     }
+    
+    console.log(formFields.photo_details)
+
     response = postData(body,"POST",assessmentsListCreateViewUrl )
     response.then(res => {
         
@@ -250,17 +262,16 @@ card_container.addEventListener('click', postDeleteBtnHandler)
 
 cancel_post_edit_btn.addEventListener('click', (e)=> {
     e.preventDefault()
-    if (!confirm('آیا مطمین هستید؟'))
-        return
     toggleWindowOpacity('1',false)
     enableScroll()
     managePostWindows.style.display = 'none'
+    document.getElementById('existing-image-download-btn').style.display  = 'none'
 })
+
+
 
 cancel_post_create_btn.addEventListener('click', (e)=>{
     e.preventDefault()
-    if (!confirm('آیا مطمین هستید؟'))
-        return
     toggleWindowOpacity('1',false)
     enableScroll()
     newPostForm.style.display = 'none'
