@@ -6,5 +6,4 @@ response.then( (response) => {
         window.location.href = "home"
 }).catch(error => {
     alert(`${error} : خطایی رخ داده`) 
-    window.location.href = "index"
 })

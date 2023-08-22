@@ -2,8 +2,9 @@ const baseUrl = 'http://127.0.0.1:8000/'
 const tokenObtainPairViewUrl = baseUrl + 'api/token/'
 const tokenRefreshViewUrl = baseUrl + 'api/token/refresh/'
 const checkTokenViewUrl = baseUrl + 'api/user/checktoken/'
-const assessmentsListCreateViewUrl = baseUrl + 'api/assessments/'
+const assessmentsListCreateViewUrl = baseUrl + 'api/contracts/'
 const searchAssessmentUrl = assessmentsListCreateViewUrl
+const managePhotoUrl = baseUrl + 'api/contracts/photo/'
 
 
 function createCookie(name,value,days) {
@@ -96,5 +97,19 @@ async function fetchDelete(Token,url,method) {
       },
       body: JSON.stringify(body), 
     }).then( response=> response.json())
+    return response 
+  }
+
+
+  async function postPhoto(body, method, url) {
+    Token = readCookie('token')
+    const response = await fetch(url, {
+      method: method, 
+       headers: {
+            'Authorization': `Bearer ${Token}`,
+            //'Content-Type': 'multipart/form-data; boundary=something',
+      },
+      body: body, 
+    }).then( response=> response)
     return response 
   }

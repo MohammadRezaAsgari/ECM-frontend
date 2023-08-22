@@ -1,4 +1,4 @@
-
+const no_content_massage = document.getElementById('no-content-massage')
 const card_container = document.getElementById('card-container')
 const logOutBtn = document.getElementById('logout-btn')
 const mainTag = document.querySelector('main')
@@ -9,6 +9,10 @@ const newPostForm = document.getElementById('create-new-post-panel')
 const search_form = document.getElementById('search-form')
 let token = readCookie('token')
 let selected_post_id;
+
+
+
+
 
 
 
@@ -24,10 +28,9 @@ function FETCH_POSTS(search){
             for(assessment of result){
                 card_body = `<div id="single-card" class="card-body" style="margin-top: 30px;background: #ffffff;border-radius: 30px;box-shadow: 0px 0px 5px 1px #000000;"><div class="row" ><div class="col" ><h5 style="direction: rtl;text-align: right;margin-bottom: 1px;font-family: bnazanb;">نام شرکت : ${assessment.company_name} </h5></div><div class="col"><h5 style="direction: rtl;text-align: right;font-family: bnazanb;">نام سامانه : ${assessment.product_name}</h5></div></div><div class="row"><div class="col"><h6 style="direction: rtl;text-align: right;margin-bottom: 1px;font-family: bnazanb;">تاریخ عقد قرارداد : ${assessment.date_of_contract}</h6></div><div class="col"><h6 style="direction: rtl;text-align: right;margin-bottom: 1px;font-family: bnazanb;">شماره قرارداد : ${assessment.contract_number}</h6></div></div><button id="${assessment.id}" class="btn btn-primary post-edit" type="button" style="font-family: bnazanb;background: #00aacc;border-style: solid;border-radius: 18px;border-color: #00aacc;margin-right: 10px;margin-left: 10px;">ویرایش</button><button id="${assessment.id}" class="btn btn-primary post-delete" type="button" style="font-family: bnazanb;background: var(--bs-danger);border-radius: 18px;margin-right: 10px;margin-left: 10px;text-align: center;width: 69.25px;border-style: none;border-color: #00aacc;">حذف</button></div>`
                 card_container.innerHTML += card_body
-            }
-            no_content_massage = document.getElementById('no-content-massage')
-            no_content_massage.style.display = "none"
+            }   
         }
+        no_content_massage.style.display = "block"
     }).catch(err =>  {
         alert(`${err} : خطایی رخ داده`) 
         no_content_massage.style.display = "block"
@@ -107,13 +110,8 @@ function postManageBtnHandler(event) {
     document.getElementById('product-name-details').value =  result.product_name
     document.getElementById('date-details').value =  result.date_of_contract
     document.getElementById('contract-number-details').value =  result.contract_number
-    // contract_photo = result.contract_photo
-    // if (!!contract_photo){
-    //     imageUrl = result.contract_photo.photo
-    //     document.getElementById('existing-image').href =  imageUrl
-    //     document.getElementById('existing-image').style.display = 'block'
-    // }
-    response2 = fetcphoto(token,assessmentsListCreateViewUrl+'photo/'+`${selected_post_id}`,"GET")
+
+    response2 = fetcphoto(token,managePhotoUrl+`${selected_post_id}`,"GET")
     response2.then( res=>{
         if(res.type==='image/jpeg'){
             const imageUrl = URL.createObjectURL(res)
@@ -147,7 +145,6 @@ function postDeleteBtnHandler(event) {
     selected_post_id = event.target.id
     response = fetchDelete(token,assessmentsListCreateViewUrl+`${selected_post_id}`,"DELETE")
     response.then(result=>{
-        alert('قرارداد ارزیابی با موفقیت حذف شد.')
         location.reload()
     }).catch(err =>  {
         alert(`${err} : خطایی رخ داده`) 
@@ -169,7 +166,7 @@ logOutBtn.addEventListener('click', (e)=> {
 })
 
 
-function newPostHanlder(event){
+ function newPostHanlder(event){
     event.preventDefault()
     form = event.target
     formFields = form.elements
@@ -181,21 +178,23 @@ function newPostHanlder(event){
         contract_number: formFields.contract_num.value 
     }
     
-    console.log(formFields.photo_details)
 
-    response = postData(body,"POST",assessmentsListCreateViewUrl )
-    response.then(res => {
-        
-
+    response =  postData(body,"POST",assessmentsListCreateViewUrl )
+    response.then(async res => {
         if(Object.keys(res).length===1){
-            alert(res[Object.keys(res)[0]])
+            console.log(res[Object.keys(res)[0]])
             return
         }
         
+        const formData = new FormData()
+        formData.append( 'photo', formFields.photo_details.files[0] )
+        formData.append( 'post_id', res.id )
+        response2 = await postPhoto(formData,"POST",managePhotoUrl )
+        
+
 
         toggleWindowOpacity('1',false)
         newPostForm.style.display = 'none'
-        alert('قرارداد با موفقیت اضافه شد.')
         location.reload()
       }
       ).catch(err=> alert(`${err} : خطایی رخ داده`) )
@@ -218,7 +217,7 @@ function updatePostHandler(event){
         contract_number: formFields.contract_num.value 
     }
     response = postData(body,"PUT",assessmentsListCreateViewUrl+`${selected_post_id}`)
-    response.then(res => {
+    response.then(async res => {
         
 
         if(Object.keys(res).length===1){
@@ -226,10 +225,15 @@ function updatePostHandler(event){
             return
         }
         
+        if(!!formFields.photo_details.files[0]){
+            const formData = new FormData()
+            formData.append( 'photo', formFields.photo_details.files[0] )
+            
+            response2 = await postPhoto(formData,"PUT",managePhotoUrl+ `${selected_post_id}`)
+        }
 
         toggleWindowOpacity('1',false)
         managePostWindows.style.display = 'none'
-        alert('قرارداد با موفقیت ویرایش شد.')
         location.reload()
       }
       ).catch(err=> alert(`${err} : خطایی رخ داده`) )
