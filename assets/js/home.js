@@ -1,3 +1,4 @@
+const post_template = document.getElementById('POST_TEMPLATE').innerHTML
 const no_content_massage = document.getElementById('no-content-massage')
 const card_container = document.getElementById('card-container')
 const logOutBtn = document.getElementById('logout-btn')
@@ -7,28 +8,24 @@ const cancel_post_edit_btn = document.getElementById('cancel-post-edit-btn')
 const cancel_post_create_btn = document.getElementById('cancel-post-create-btn')
 const newPostForm = document.getElementById('create-new-post-panel')
 const search_form = document.getElementById('search-form')
+const  search_text = document.getElementById('search-text')
+const search_header_template = document.getElementById('search_header_template').innerHTML
 let token = readCookie('token')
 let selected_post_id;
 
 
 
 
-
-
-
-FETCH_POSTS(false)
-function FETCH_POSTS(search){
-    if(search){
-
-    }
-    else{
+FETCH_POSTS()
+function FETCH_POSTS(){
     response = fetchUrl(token,assessmentsListCreateViewUrl,"GET")
     response.then(result=>{
         if (result[0]){
             for(assessment of result){
-                card_body = `<div id="single-card" class="card-body" style="margin-top: 30px;background: #ffffff;border-radius: 30px;box-shadow: 0px 0px 5px 1px #000000;"><div class="row" ><div class="col" ><h5 style="direction: rtl;text-align: right;margin-bottom: 1px;font-family: bnazanb;">نام شرکت : ${assessment.company_name} </h5></div><div class="col"><h5 style="direction: rtl;text-align: right;font-family: bnazanb;">نام سامانه : ${assessment.product_name}</h5></div></div><div class="row"><div class="col"><h6 style="direction: rtl;text-align: right;margin-bottom: 1px;font-family: bnazanb;">تاریخ عقد قرارداد : ${assessment.date_of_contract}</h6></div><div class="col"><h6 style="direction: rtl;text-align: right;margin-bottom: 1px;font-family: bnazanb;">شماره قرارداد : ${assessment.contract_number}</h6></div></div><button id="${assessment.id}" class="btn btn-primary post-edit" type="button" style="font-family: bnazanb;background: #00aacc;border-style: solid;border-radius: 18px;border-color: #00aacc;margin-right: 10px;margin-left: 10px;">ویرایش</button><button id="${assessment.id}" class="btn btn-primary post-delete" type="button" style="font-family: bnazanb;background: var(--bs-danger);border-radius: 18px;margin-right: 10px;margin-left: 10px;text-align: center;width: 69.25px;border-style: none;border-color: #00aacc;">حذف</button></div>`
+                card_body =  eval('`'+post_template+'`')
                 card_container.innerHTML += card_body
             }   
+            return
         }
         no_content_massage.style.display = "block"
     }).catch(err =>  {
@@ -37,7 +34,7 @@ function FETCH_POSTS(search){
         location.reload()
     
     })
-    }
+    
 }
 
 
@@ -135,7 +132,8 @@ function postDeleteBtnHandler(event) {
     const isButton = event.target.nodeName === 'BUTTON'
     if (!isButton || 
         event.target.id==='add-post-btn' ||
-        event.target.classList.contains('post-edit') ) {
+        event.target.classList.contains('post-edit') || 
+        event.target.classList.contains('return') ) {
       return
     }
     
@@ -182,7 +180,7 @@ logOutBtn.addEventListener('click', (e)=> {
     response =  postData(body,"POST",assessmentsListCreateViewUrl )
     response.then(async res => {
         if(Object.keys(res).length===1){
-            console.log(res[Object.keys(res)[0]])
+            alert(res[Object.keys(res)[0]])
             return
         }
         
@@ -242,18 +240,43 @@ function updatePostHandler(event){
 //////////////////////////////////okey nist
 function searchHandler(e){
     e.preventDefault()
+    no_content_massage.style.display = "none"
     form = e.target
     formFields = form.elements
-    company_name = formFields.organ_name.value,
-    product_name = formFields.product_name.value,
-    contract_number = formFields.contract_num.value 
+    let search_factors_all = []
+    let query_params = `?`
+    search_factors_all.push(formFields.organ_name.value)
+    search_factors_all.push(formFields.product_name.value)
+    search_factors_all.push(formFields.contract_num.value )
+
+
+    for(item of search_factors_all){
+        if (item)
+        query_params = query_params.concat(`search=${item}&`)
+    }
+    if (query_params.at(-1)===`&`)
+        query_params = query_params.slice(0,query_params.length - 1) 
     
-    response = fetchUrl(readCookie('token'), searchAssessmentUrl, "GET")
-    response.then(res => {
 
-      }
-      ).catch(err=> alert(`${err} : خطایی رخ داده`) )
-
+    
+    response = fetchUrl(readCookie('token'), searchAssessmentUrl+query_params, "GET")
+    response.then(result=>{
+            card_container.innerHTML = ``
+            card_container.innerHTML += search_header_template
+            if (result[0]){
+                for(assessment of result){
+                    card_body =  eval('`'+post_template+'`')
+                    card_container.innerHTML += card_body
+                }   
+                return
+            }
+            no_content_massage.style.display = "block"
+        }).catch(err =>  {
+            alert(`${err} : خطایی رخ داده`) 
+            no_content_massage.style.display = "block"
+            location.reload()
+        
+        })
 }
 
 //document.addEventListener('click', windowsClickOutside)
