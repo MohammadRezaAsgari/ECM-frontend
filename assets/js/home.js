@@ -91,7 +91,8 @@ function postManageBtnHandler(event) {
     const isButton = event.target.nodeName === 'BUTTON'
     if (!isButton || 
         event.target.id==='add-post-btn' ||
-        event.target.classList.contains('post-delete') ) {
+        event.target.classList.contains('post-delete') || 
+        event.target.classList.contains('return') ) {
       return
     }
   
@@ -240,6 +241,7 @@ function updatePostHandler(event){
 //////////////////////////////////okey nist
 function searchHandler(e){
     e.preventDefault()
+    document.getElementById('home-btn').style.background = null
     no_content_massage.style.display = "none"
     form = e.target
     formFields = form.elements
