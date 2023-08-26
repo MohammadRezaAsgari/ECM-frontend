@@ -55,7 +55,12 @@ function editUserHandler(e){
         alert('رمز عبور جدید و تکرار آن یکسان نیستند!')
         return
     }
+    if(new_pass===current_pass){
+        alert('رمز عبور جدید باید متفاوت باشد!')
+        return
+    }
 
+    if(user_name&&current_pass&&new_pass&&repeat_new_pass){    
     let body1 = {
         username: user_name,
         password: current_pass,
@@ -71,7 +76,7 @@ function editUserHandler(e){
         alert(result.status)
         location.reload()
         return
-        })
+        })}
 }
 
 
