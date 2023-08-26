@@ -31,7 +31,7 @@
     <main>
         <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light home" id="mainNav" style="margin-bottom:0;background:var(--bs-indigo);border-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;width:100%;padding-top:0;">
             <div class="container">
-                <div id="navcol-1" class="collapse navbar-collapse" ><button id="logout-btn" class="btn" role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-sign-out" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button onclick="location.reload()" id="home-btn" class="btn" rel role="button" style="background: var(--bs-navbar-disabled-color);color: var(--bs-navbar-active-color);margin: 10px 10px 10px 10px;"><i class="fa fa-home" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button id="user-mng-btn" class="btn" rel role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-male" style="font-size: 36px;color: white;border-radius: 18px;"></i></button></div><span style="font-family:bnazanb;color:rgb(255,255,255);margin-right:10px; font-size:24px;">سامانه مدیریت قرارداد های ارزیابی</span><img src="https://en.itrc.ac.ir/sites/default/files/2-ARM-%20LATIN%20PNG.png" alt="" style="width: 8%;">
+                <div id="navcol-1" class="collapse navbar-collapse" ><button id="logout-btn" class="btn" role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-sign-out" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button onclick="location.reload()" id="home-btn" class="btn" rel role="button" style="background: var(--bs-navbar-disabled-color);color: var(--bs-navbar-active-color);margin: 10px 10px 10px 10px;"><i class="fa fa-home" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button id="user-mng-btn" class="btn" onclick="window.location.href = `user-management`" role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-male" style="font-size: 36px;color: white;border-radius: 18px;"></i></button></div><span style="font-family:bnazanb;color:rgb(255,255,255);margin-right:10px; font-size:24px;">سامانه مدیریت قرارداد های ارزیابی</span><img src="assets/photos/logo.png" alt="" style="width: 8%;">
             </div>
         </nav>
         <form id="search-form" class="row d-flex flex-row-reverse justify-content-center align-items-center align-content-center m-auto home" style="width:80%;border-bottom-style:solid;border-bottom-color:var(--bs-emphasis-color);padding:0;padding-right:0;padding-bottom:10px;padding-top:20px;padding-left:0;">
@@ -42,9 +42,9 @@
             <div class="col m-auto" style="text-align:right;width:18%;max-width:18%;margin-right:0;padding-right:60px;padding-left:0;"><button class="btn btn-primary m-auto" id="search_form_submit" type="submit" style="width: 109px;font-family: bnazanb;overflow: auto;position: static;display: inline-block;padding-right: 5px;padding-left: 0px;height: 47px;min-width: auto;max-width: none;margin: 0;margin-top: 0;margin-right: 0;margin-bottom: 0;margin-left: 0;text-align: center;border-style: solid;border-radius: 18px;">جستجو</button></div>
         
         </form>
-        <div  class="card mx-auto home" style="width: 80%;margin: 10px;padding: 10px;margin-bottom: 58px;border-style: none;">
-            <div id="card-container" class="card-header" style="border-radius: 18px;border-bottom-right-radius: 18px;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;">
-                <div class="row d-flex justify-content-end ms-auto" style="width: 40%;text-align: center;margin: 0;margin-left: 0;">
+        <div  class="card mx-auto home" style="background: #ffffff;width: 80%;margin: 10px;padding: 10px;margin-bottom: 58px;border-style: none;">
+            <div id="card-container" class="card-header" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;">
+                <div class="row d-flex justify-content-end ms-auto" style="background: #ffffff;border-bottom-style: none;width: 40%;text-align: center;margin: 0;margin-left: 0;">
                     <div class="col" style="text-align: right;"><button onclick="addPostBtnHandler()" id="add-post-btn" class="btn btn-primary" type="button" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: inline-block;background: var(--bs-success);margin: 0;margin-left: 0;width: 53px;min-width: auto;max-width: none;height: 40px;margin-top: 5px;margin-right: 10px;margin-bottom: 0;padding-right: 0;padding-left: 0;font-weight: bold;font-size: 15px;text-align: center;padding-top: 0;padding-bottom: 0;border-radius: 18px;border: 1px solid var(--bs-success);width: 69px;">افزودن</button></div>
                     <div class="col" style="max-width: none;width: auto;padding: 0;">
                         <h1 id="header-text" style="text-align: center;font-family: bnazanb;width: 100%;height: 100%;">قراردادها</h1>
@@ -52,6 +52,8 @@
                 </div>
             </div>
            
+
+
             <h3 id="no-content-massage" style="display: none;;text-align:right;font-family:bnazanb;margin-top:10px;">هیچ رکوردی وجود ندارد</h3>
             
         </div>
@@ -76,7 +78,7 @@
                     </div>
                 </div>
                 
-                <button id="${assessment.id}" class="btn btn-primary post-edit" type="button" style="font-family: bnazanb;background: #00aacc;border-style: solid;border-radius: 18px;border-color: #00aacc;margin-right: 10px;margin-left: 10px;">ویرایش</button>
+                <button id="${assessment.id}" class="btn btn-primary post-edit" type="button" style="font-family: bnazanb;background: #00aacc;border-style: solid;border-radius: 18px;border-color: #00aacc;margin-right: 10px;margin-left: 10px;">جزئیات</button>
                 <button id="${assessment.id}" class="btn btn-primary post-delete" type="button" style="font-family: bnazanb;background: var(--bs-danger);border-radius: 18px;margin-right: 10px;margin-left: 10px;text-align: center;width: 69.25px;border-style: none;border-color: #00aacc;">حذف</button>
             </div>
         </script>

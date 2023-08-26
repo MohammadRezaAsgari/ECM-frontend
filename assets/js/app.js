@@ -1,11 +1,16 @@
 //const baseUrl = 'http://192.168.43.111:8000/'
-const baseUrl = 'http://192.168.1.34:8000/'
+const baseUrl = 'http://127.0.0.1:8000/'
 const tokenObtainPairViewUrl = baseUrl + 'api/token/'
 const tokenRefreshViewUrl = baseUrl + 'api/token/refresh/'
 const checkTokenViewUrl = baseUrl + 'api/user/checktoken/'
 const assessmentsListCreateViewUrl = baseUrl + 'api/contracts/'
 const searchAssessmentUrl = assessmentsListCreateViewUrl
 const managePhotoUrl = baseUrl + 'api/contracts/photo/'
+const getUsernameUrl = baseUrl + 'api/user/getusername/'
+const changeUsernameUrl = baseUrl + 'api/user/changeusername/'
+const changeUsernameAndPasswordUrl = baseUrl + 'api/user/changeuserpass/'
+const isAdminUrl = baseUrl + 'api/user/isAdmin/'
+const createUserUrl = baseUrl + 'api/user/createuser/'
 
 
 function createCookie(name,value,days) {
