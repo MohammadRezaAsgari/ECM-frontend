@@ -13,6 +13,22 @@ const isAdminUrl = baseUrl + 'api/user/isAdmin/'
 const createUserUrl = baseUrl + 'api/user/createuser/'
 
 
+function myAlert(massage,succ){
+  const box = document.getElementById('massage-box')
+  const text = document.querySelector('#massage-box h5')
+  text.textContent  = massage
+  if(succ){
+    box.style.background = 'var(--bs-green)'
+    box.style.boxShadow = '0px 0px 5px 2px var(--bs-green)'
+  }
+  else{
+    box.style.background = 'var(--bs-form-invalid-color)'
+    box.style.boxShadow = '0px 0px 5px 2px var(--bs-form-invalid-color)'
+  }
+  box.style.display = 'block'
+  setTimeout(function(){box.style.display='none'},2000)
+}
+
 function createCookie(name,value,days) {
     if (days) {
         var date = new Date();

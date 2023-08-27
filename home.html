@@ -37,7 +37,7 @@
         <form id="search-form" class="row d-flex flex-row-reverse justify-content-center align-items-center align-content-center m-auto home" style="width:80%;border-bottom-style:solid;border-bottom-color:var(--bs-emphasis-color);padding:0;padding-right:0;padding-bottom:10px;padding-top:20px;padding-left:0;">
             <div class="col m-auto" style="text-align:right;width:30%;"><input name="product_name" type="text" dir="rtl" class="m-auto" id="search_form_product" placeholder="نام سامانه" style="margin:0 0px;margin-right:55px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:10px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:40px;width:100%;min-width:100%;max-width:100%;padding-top:0;"></div>
             <div class="col m-auto" style="text-align:right;width:30%;"><input name="organ_name" type="text" dir="rtl" class="m-auto" id="search_form_organization" placeholder="نام سازمان" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:10px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:40px;width:100%;min-width:100%;max-width:100%;"></div>
-            <div class="col m-auto" style="text-align:right;width:30%;"><input name="contract_num" type="text" dir="rtl" class="m-auto" id="search_form_id" placeholder="شماره پرونده" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:10px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:40px;width:100%;min-width:100%;max-width:100%;"></div>
+            <div class="col m-auto" style="text-align:right;width:30%;"><input name="contract_num" type="text" dir="rtl" class="m-auto" id="search_form_id" placeholder="شماره قرارداد" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:10px;margin-left:10px;font-family:bnazanb;text-align:right;border-radius:10px;border-width:1px;height:40px;width:100%;min-width:100%;max-width:100%;"></div>
             
             <div class="col m-auto" style="text-align:right;width:18%;max-width:18%;margin-right:0;padding-right:60px;padding-left:0;"><button class="btn btn-primary m-auto" id="search_form_submit" type="submit" style="width: 109px;font-family: bnazanb;overflow: auto;position: static;display: inline-block;padding-right: 5px;padding-left: 0px;height: 47px;min-width: auto;max-width: none;margin: 0;margin-top: 0;margin-right: 0;margin-bottom: 0;margin-left: 0;text-align: center;border-style: solid;border-radius: 18px;">جستجو</button></div>
         
@@ -120,8 +120,33 @@
                     <script>jalaliDatepicker.startWatch()</script>
                     <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" name="date" data-jdp placeholder="تاریخ" autocomplete="off" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
                 </div>
-                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4><input id="contract-number-details" type="text" name="contract_num" placeholder="شماره پرونده" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;max-width: 100%;" dir="rtl" />
+
+
+                <div  class="col  manage-post-panel_contract_num" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4>
+                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="height: auto;">
+                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 8px;padding-top: 0;height: auto;">
+                            
+                            <select required id="contract_number_details1" name="contract_number_details1" class="form-select" style="width: 70px;margin-right: 0;margin-left: 0;height: 40px;margin-top: 10px;border-color: black;border-radius: 10px;font-family: bnazanb">
+                                <optgroup label>
+                                    <option value="م">م</option>
+                                    <option value="پ">پ</option>           
+                                </optgroup>
+                            </select>
+                            <h3 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 15px;margin-bottom: 4px;">/</h3>
+                            <select required id="contract_number_details2" name="contract_number_details2" class="form-select" style="width: 70px;margin-right: 0;margin-left: 0;height: 40px;margin-top: 10px;border-color: black;border-radius: 10px;font-family: bnazanb">
+                                <optgroup label>
+                                    <option value="م" >م</option>
+                                    <option value="پ">پ</option>           
+                                </optgroup>
+                            </select>
+                            <h3 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 15px;margin-bottom: 0;">/</h3>
+                            <input id="contract_number_details3" name="contract_number_details3" type="text" name="contract_num" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 10px;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 70px;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
+                            
+                            <h3 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 15px;">/</h3>
+                            <input id="contract_number_details4" name="contract_number_details4" type="text" name="contract_num" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 10px;height: 40px;max-width: 100%;width: 70px;" dir="rtl" />
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -130,7 +155,9 @@
                 <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
                     <h4 class="d-xl-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;height: auto;margin-bottom: 10px;width: auto;">                    
                         <a id="existing-image-download-btn" class=" justify-content-xl-center align-items-xl-center" download="contract_photo" href="" style="text-decoration: none;display: none;;width: 50px;height: 30px;margin: 0;margin-right: 5px;font-size: 12px;text-align: center;background: rgb(11,94,215);color: var(--bs-body-bg);border-radius: 18px;font-family: bnazanb;">دریافت</a>
-                        تصویر صفحه اول قرارداد</h4><input name="photo_details" class="form-control form-control" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
+                        <a id="existing-image-preview-btn" class=" justify-content-xl-center align-items-xl-center"  href="" style="text-decoration: none;display: none;;width: 50px;height: 30px;margin: 0;margin-right: 5px;font-size: 12px;text-align: center;background: var(--bs-purple);color: var(--bs-body-bg);border-radius: 18px;font-family: bnazanb;">نمایش</a>
+                        تصویر صفحه اول قرارداد</h4>
+                        <input name="photo_details" class="form-control form-control" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
                 </div>
             </div>
 
@@ -167,9 +194,35 @@
                     <script>jalaliDatepicker.startWatch()</script>
                     <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" data-jdp name="date" autocomplete="off" placeholder="تاریخ" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
                 </div>
-                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4><input id="contract-number-details" type="text" name="contract_num" placeholder="شماره پرونده" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;max-width: 100%;" dir="rtl" />
+
+                <div class="col  " style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4>
+                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="height: auto;">
+                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 8px;padding-top: 0;height: auto;">
+                            
+                            <select required name="contract_number_details1" class="form-select" style="width: 70px;margin-right: 0;margin-left: 0;height: 40px;margin-top: 10px;border-color: black;border-radius: 10px;font-family: bnazanb">
+                                <optgroup label>
+                                    <option value="م" selected>م</option>
+                                    <option value="پ">پ</option>           
+                                </optgroup>
+                            </select>
+                            <h3 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 15px;margin-bottom: 4px;">/</h3>
+                            <select required name="contract_number_details2" class="form-select" style="width: 70px;margin-right: 0;margin-left: 0;height: 40px;margin-top: 10px;border-color: black;border-radius: 10px;font-family: bnazanb">
+                                <optgroup label>
+                                    <option value="م" >م</option>
+                                    <option value="پ" selected>پ</option>           
+                                </optgroup>
+                            </select>
+                            <h3 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 15px;margin-bottom: 0;">/</h3>
+                            <input name="contract_number_details3" type="text" name="contract_num" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 10px;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 70px;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
+                            
+                            <h3 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 15px;">/</h3>
+                            <input name="contract_number_details4" type="text" name="contract_num" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 10px;height: 40px;max-width: 100%;width: 70px;" dir="rtl" />
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
                 <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
@@ -185,6 +238,15 @@
                 </div>
             </div>
         </form> 
+
+
+
+
+
+        <div id="massage-box" class="alert alert-success text-end" role="alert" style="position: fixed;display: none;top: 90%;left: 68%;z-index: 101;width: 30%;margin: 0px;margin-right: 20px;border-radius: 15px;height: 50px;padding-bottom: 20px;background: var(--bs-green);box-shadow: 0px 0px 5px 2px var(--bs-green);border-style: none;">
+            <h5 class="d-xl-flex justify-content-xl-start align-items-xl-center" style="direction: rtl;text-align: right;font-family: bnazanb;width: 100%;height: 100%;color: rgb(255,255,255);padding-bottom: 0;margin-bottom: 0;"></h5>
+        </div>
+
 
     </main>
 </body>

@@ -35,28 +35,28 @@ function editUserHandler(e){
         change_username_response =  postData(body,"POST",changeUsernameUrl )
         change_username_response.then(result => {
             if(result.error){
-                alert(result.status)
+                myAlert(result.status,false)
                 return
             }
-            alert(result.status)
-            location.reload()
+            myAlert(result.status,true)
+            setTimeout(function() {location.reload()}, 2000)
             return
             })
     }
     if(new_pass && !repeat_new_pass){
-        alert('لطفا تکرار رمز عبور جدید خود را وارد کنید!')
+        myAlert('!لطفا تکرار رمز عبور جدید خود را وارد کنید', false)
         return
     }
     if(!new_pass && repeat_new_pass){
-        alert('لطفا رمز عبور جدید خود را وارد کنید!')
+        myAlert('!لطفا رمز عبور جدید خود را وارد کنید', false)
         return
     }
     if(new_pass!==repeat_new_pass){
-        alert('رمز عبور جدید و تکرار آن یکسان نیستند!')
+        myAlert('!رمز عبور جدید و تکرار آن یکسان نیستند',false)
         return
     }
     if(new_pass===current_pass){
-        alert('رمز عبور جدید باید متفاوت باشد!')
+        myAlert('!رمز عبور جدید باید متفاوت باشد',false)
         return
     }
 
@@ -74,7 +74,7 @@ function editUserHandler(e){
             return
         }
         alert(result.status)
-        location.reload()
+        setTimeout(function() {location.reload()}, 2000)
         return
         })}
 }
@@ -92,7 +92,7 @@ function crateUserHandler(e){
     
 
     if(pass!==repeat_pass){
-        alert('رمز عبور و تکرار آن یکسان نیستند!')
+        myAlert('!رمز عبور و تکرار آن یکسان نیستند',false)
         return
     }
 
@@ -106,11 +106,11 @@ function crateUserHandler(e){
     create_user_response =  postData(body,"POST",createUserUrl )
     create_user_response.then(result => {
         if(result.error){
-            alert(result.status)
+            myAlert(result.status,false)
             return
         }
-        alert(result.status)
-        location.reload()
+        myAlert(result.status,true)
+        setTimeout(function() {location.reload()}, 2000)
         return
         })
 

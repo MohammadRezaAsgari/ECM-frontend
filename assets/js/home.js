@@ -14,8 +14,6 @@ let token = readCookie('token')
 let selected_post_id;
 
 
-
-
 FETCH_POSTS()
 function FETCH_POSTS(){
     response = fetchUrl(token,assessmentsListCreateViewUrl,"GET")
@@ -29,9 +27,8 @@ function FETCH_POSTS(){
         }
         no_content_massage.style.display = "block"
     }).catch(err =>  {
-        alert(`${err} : خطایی رخ داده`) 
+        console.log(`${err} : خطایی رخ داده`) 
         no_content_massage.style.display = "block"
-        location.reload()
     
     })
     
@@ -107,7 +104,14 @@ function postManageBtnHandler(event) {
     document.getElementById('organization-name-details').value =  result.company_name
     document.getElementById('product-name-details').value =  result.product_name
     document.getElementById('date-details').value =  result.date_of_contract
-    document.getElementById('contract-number-details').value =  result.contract_number
+    
+
+    arr = result.contract_number.split('/')
+
+    document.getElementById('contract_number_details1').value =  arr[3]
+    document.getElementById('contract_number_details2').value =  arr[2]
+    document.getElementById('contract_number_details3').value =  arr[0]
+    document.getElementById('contract_number_details4').value =  arr[1]
 
     response2 = fetcphoto(token,managePhotoUrl+`${selected_post_id}`,"GET")
     response2.then( res=>{
@@ -118,13 +122,12 @@ function postManageBtnHandler(event) {
         }
     }
     ).catch(err =>  {
-        alert(`${err} : خطایی رخ داده`) 
+        console.log(`${err} : خطایی رخ داده`) 
     })
     
     managePostWindows.style.display = 'block'
     }).catch(err =>  {
-        alert(`${err} : خطایی رخ داده`) 
-        location.reload()
+        console.log(`${err} : خطایی رخ داده`) 
     })
   }
 
@@ -144,10 +147,10 @@ function postDeleteBtnHandler(event) {
     selected_post_id = event.target.id
     response = fetchDelete(token,assessmentsListCreateViewUrl+`${selected_post_id}`,"DELETE")
     response.then(result=>{
-        location.reload()
+        myAlert('قرارداد با موفقیت حذف شد.',true)
+        setTimeout(function() {location.reload()}, 1000)
     }).catch(err =>  {
-        alert(`${err} : خطایی رخ داده`) 
-        location.reload()
+        console.log(`${err} : خطایی رخ داده`) 
     })
   }
 
@@ -170,18 +173,25 @@ logOutBtn.addEventListener('click', (e)=> {
     form = event.target
     formFields = form.elements
 
+    
+    
+    
+    
     const body = {
         company_name: formFields.organ_name.value,
         product_name: formFields.product_name.value,
         date_of_contract: formFields.date.value,
-        contract_number: formFields.contract_num.value 
+        contract_number: formFields.contract_number_details3.value + '/' +
+                        formFields.contract_number_details4.value + '/' +
+                        formFields.contract_number_details2.value + '/'+
+                        formFields.contract_number_details1.value 
     }
     
 
     response =  postData(body,"POST",assessmentsListCreateViewUrl )
     response.then(async res => {
         if(Object.keys(res).length===1){
-            alert(res[Object.keys(res)[0]])
+            myAlert(res[Object.keys(res)[0]],false)
             return
         }
         
@@ -191,12 +201,16 @@ logOutBtn.addEventListener('click', (e)=> {
         response2 = await postPhoto(formData,"POST",managePhotoUrl )
         
 
+        myAlert('قرارداد با موفقیت اضافه شد.',true)
+        setTimeout(function() {
+            toggleWindowOpacity('1',false)
+            newPostForm.style.display = 'none'
+            location.reload()
+        }, 1000)
 
-        toggleWindowOpacity('1',false)
-        newPostForm.style.display = 'none'
-        location.reload()
+
       }
-      ).catch(err=> alert(`${err} : خطایی رخ داده`) )
+      ).catch(err=> console.log(`${err} : خطایی رخ داده`) )
     
     
     
@@ -213,14 +227,17 @@ function updatePostHandler(event){
         company_name: formFields.organ_name.value,
         product_name: formFields.product_name.value,
         date_of_contract: formFields.date.value,
-        contract_number: formFields.contract_num.value 
+        contract_number: formFields.contract_number_details3.value + '/' +
+                        formFields.contract_number_details4.value + '/' +
+                        formFields.contract_number_details2.value + '/'+
+                        formFields.contract_number_details1.value 
     }
     response = postData(body,"PUT",assessmentsListCreateViewUrl+`${selected_post_id}`)
     response.then(async res => {
         
 
         if(Object.keys(res).length===1){
-            alert(res[Object.keys(res)[0]])
+            myAlert(res[Object.keys(res)[0]],false)
             return
         }
         
@@ -231,11 +248,15 @@ function updatePostHandler(event){
             response2 = await postPhoto(formData,"PUT",managePhotoUrl+ `${selected_post_id}`)
         }
 
-        toggleWindowOpacity('1',false)
-        managePostWindows.style.display = 'none'
-        location.reload()
+        myAlert('قرارداد با موفقیت ویرایش شد.',true)
+        setTimeout(function() {
+            toggleWindowOpacity('1',false)
+            newPostForm.style.display = 'none'
+            location.reload()
+        }, 1000)
+
       }
-      ).catch(err=> alert(`${err} : خطایی رخ داده`) )
+      ).catch(err=> console.log(`${err} : خطایی رخ داده`) )
 }
 
 //////////////////////////////////okey nist
@@ -274,9 +295,9 @@ function searchHandler(e){
             }
             no_content_massage.style.display = "block"
         }).catch(err =>  {
-            alert(`${err} : خطایی رخ داده`) 
+            console.log(`${err} : خطایی رخ داده`) 
             no_content_massage.style.display = "block"
-            location.reload()
+
         
         })
 }

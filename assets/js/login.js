@@ -13,11 +13,11 @@ loginForm.addEventListener('submit', event=>{
     
     response.then(res => {
       if (!res.access)
-        alert('نام کاربری یا رمز عبور اشتباه است. لطفا دوباره امتحان کنید!')
+      myAlert('!نام کاربری یا رمز عبور اشتباه است. لطفا دوباره امتحان کنید', false)
       else{
         createCookie('token',res.access,1)
         window.location.href = "home"
       }
-    }).catch(err=> alert(`${err} : خطایی رخ داده`) )
+    }).catch(err=> console.log(`${err} : خطایی رخ داده`) )
     
 })
