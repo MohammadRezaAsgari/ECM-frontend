@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/css/Projects-Grid-images.css">
     <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-1.css">
     <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/css/mycss.css">
     <link type="text/css" rel="stylesheet" href="assets/dist/jalalidatepicker.min.css" />
     <script type="text/javascript" src="assets/dist/jalalidatepicker.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-2.css">
@@ -31,7 +32,7 @@
     <main>
         <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light home" id="mainNav" style="margin-bottom:0;background:var(--bs-indigo);border-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;width:100%;padding-top:0;">
             <div class="container">
-                <div id="navcol-1" class="collapse navbar-collapse" ><button id="logout-btn" class="btn" role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-sign-out" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button onclick="location.reload()" id="home-btn" class="btn" rel role="button" style="background: var(--bs-navbar-disabled-color);color: var(--bs-navbar-active-color);margin: 10px 10px 10px 10px;"><i class="fa fa-home" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button id="user-mng-btn" class="btn" onclick="window.location.href = `user-management`" role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-male" style="font-size: 36px;color: white;border-radius: 18px;"></i></button></div><span style="font-family:bnazanb;color:rgb(255,255,255);margin-right:10px; font-size:24px;">سامانه مدیریت قرارداد های ارزیابی</span><img src="assets/photos/logo.png" alt="" style="width: 8%;">
+                <div id="navcol-1" class="collapse navbar-collapse" ><button id="logout-btn" class="btn" role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-sign-out" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button onclick="location.reload()" id="home-btn" class="btn" rel role="button" style="background: var(--bs-navbar-disabled-color);color: var(--bs-navbar-active-color);margin: 10px 10px 10px 10px;"><i class="fa fa-home" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button id="user-mng-btn" class="btn" onclick="window.location.href = `user-management`" role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-male" style="font-size: 36px;color: white;border-radius: 18px;width: 30px;"></i></button></div><span style="font-family:bnazanb;color:rgb(255,255,255);margin-right:10px; font-size:24px;">سامانه مدیریت قرارداد های ارزیابی</span><img src="assets/photos/logo.png" alt="" style="width: 8%;">
             </div>
         </nav>
         <form id="search-form" class="row d-flex flex-row-reverse justify-content-center align-items-center align-content-center m-auto home" style="width:80%;border-bottom-style:solid;border-bottom-color:var(--bs-emphasis-color);padding:0;padding-right:0;padding-bottom:10px;padding-top:20px;padding-left:0;">
@@ -43,8 +44,8 @@
         
         </form>
         <div  class="card mx-auto home" style="background: #ffffff;width: 80%;margin: 10px;padding: 10px;margin-bottom: 58px;border-style: none;">
-            <div id="card-container" class="card-header" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;">
-                <div class="row d-flex justify-content-end ms-auto" style="background: #ffffff;border-bottom-style: none;width: 40%;text-align: center;margin: 0;margin-left: 0;">
+            <div id="card-container" class="card-header" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;border-style: none;">
+                <div class="row d-flex justify-content-end ms-auto" style="background: none;border-bottom-style: none;width: 40%;text-align: center;margin: 0;margin-left: 0;">
                     <div class="col" style="text-align: right;"><button onclick="addPostBtnHandler()" id="add-post-btn" class="btn btn-primary" type="button" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: inline-block;background: var(--bs-success);margin: 0;margin-left: 0;width: 53px;min-width: auto;max-width: none;height: 40px;margin-top: 5px;margin-right: 10px;margin-bottom: 0;padding-right: 0;padding-left: 0;font-weight: bold;font-size: 15px;text-align: center;padding-top: 0;padding-bottom: 0;border-radius: 18px;border: 1px solid var(--bs-success);width: 69px;">افزودن</button></div>
                     <div class="col" style="max-width: none;width: auto;padding: 0;">
                         <h1 id="header-text" style="text-align: center;font-family: bnazanb;width: 100%;height: 100%;">قراردادها</h1>
@@ -69,7 +70,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" style="margin-bottom:20px;">
                     <div class="col">
                         <h6 style="direction: rtl;text-align: right;margin-bottom: 1px;font-family: bnazanb;">تاریخ عقد قرارداد : ${assessment.date_of_contract}</h6>
                     </div>
@@ -108,43 +109,43 @@
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
                 <div class="col" style="width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سازمان</h4><input id="organization-name-details" type="text" name="organ_name" placeholder="نام سازمان" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" />
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سازمان</h4><input id="organization-name-details" type="text" name="organ_name" placeholder="نام سازمان" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" tabindex="2"/>
                 </div>
                 <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سامانه</h4><input id="product-name-details" type="text" name="product_name" placeholder="نام سامانه" required style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" />
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سامانه</h4><input id="product-name-details" type="text" name="product_name" placeholder="نام سامانه" required style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" tabindex="1" />
                 </div>
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
                 <div class="col" style="width: 50%;">
                     <div></div>
                     <script>jalaliDatepicker.startWatch()</script>
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" name="date" data-jdp placeholder="تاریخ" autocomplete="off" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" name="date" data-jdp placeholder="تاریخ" autocomplete="off" tabindex="7" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
                 </div>
 
 
-                <div  class="col  manage-post-panel_contract_num" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                <div  class="col  manage-post-panel_contract_num" style="padding-bottom: 0px;padding-top: 3px;padding-left: 25px;margin-right: 0px;width: 50%;height: 20%;">
                     <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4>
-                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="height: auto;">
-                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 8px;padding-top: 0;height: auto;">
+                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" >
+                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 0;padding-top: 0;">
                             
-                            <select required id="contract_number_details1" name="contract_number_details1" class="form-select" style="width: 70px;margin-right: 0;margin-left: 0;height: 40px;margin-top: 10px;border-color: black;border-radius: 10px;font-family: bnazanb">
+                            <select required id="contract_number_details1" name="contract_number_details1" tabindex="3" class="form-select" style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
                                 <optgroup label>
                                     <option value="م">م</option>
                                     <option value="پ">پ</option>           
                                 </optgroup>
                             </select>
-                            <h3 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 15px;margin-bottom: 4px;">/</h3>
-                            <select required id="contract_number_details2" name="contract_number_details2" class="form-select" style="width: 70px;margin-right: 0;margin-left: 0;height: 40px;margin-top: 10px;border-color: black;border-radius: 10px;font-family: bnazanb">
+                            <h2 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 4px;">/</h2>
+                            <select required id="contract_number_details2" name="contract_number_details2" tabindex="4" class="form-select" style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
                                 <optgroup label>
                                     <option value="م" >م</option>
                                     <option value="پ">پ</option>           
                                 </optgroup>
                             </select>
-                            <h3 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 15px;margin-bottom: 0;">/</h3>
-                            <input id="contract_number_details3" name="contract_number_details3" type="text" name="contract_num" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 10px;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 70px;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
+                            <h2 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 0;">/</h2>
+                            <input id="contract_number_details3" name="contract_number_details3" type="text" name="contract_num" tabindex="5" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 0;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 23%;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
                             
-                            <h3 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 15px;">/</h3>
-                            <input id="contract_number_details4" name="contract_number_details4" type="text" name="contract_num" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 10px;height: 40px;max-width: 100%;width: 70px;" dir="rtl" />
+                            <h2 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 0;">/</h2>
+                            <input id="contract_number_details4" name="contract_number_details4" type="text" name="contract_num" tabindex="6" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 0;height: 40px;max-width: 100%;width: 23%;" dir="rtl" />
                         </div>
                     </div>
                 </div>
@@ -157,15 +158,15 @@
                         <a id="existing-image-download-btn" class=" justify-content-xl-center align-items-xl-center" download="contract_photo" href="" style="text-decoration: none;display: none;;width: 50px;height: 30px;margin: 0;margin-right: 5px;font-size: 12px;text-align: center;background: rgb(11,94,215);color: var(--bs-body-bg);border-radius: 18px;font-family: bnazanb;">دریافت</a>
                         <a id="existing-image-preview-btn" class=" justify-content-xl-center align-items-xl-center"  href="" style="text-decoration: none;display: none;;width: 50px;height: 30px;margin: 0;margin-right: 5px;font-size: 12px;text-align: center;background: var(--bs-purple);color: var(--bs-body-bg);border-radius: 18px;font-family: bnazanb;">نمایش</a>
                         تصویر صفحه اول قرارداد</h4>
-                        <input name="photo_details" class="form-control form-control" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
+                        <input name="photo_details" class="form-control form-control" tabindex="8" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
                 </div>
             </div>
 
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
                 <div class="col" style="width: 49%;">
                     <div class="row" style="width: 100%;">
-                        <div class="col"><button id="cancel-post-edit-btn" class="btn btn-primary justify-content-center align-items-center" type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
-                        <div class="col"><button class="btn btn-primary" type="submit" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
+                        <div class="col"><button id="cancel-post-edit-btn" tabindex="10" class="btn btn-primary justify-content-center align-items-center" type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                        <div class="col"><button class="btn btn-primary" type="submit" tabindex="9" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
                     </div>
                 </div>
             </div>
@@ -182,42 +183,42 @@
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
                 <div class="col" style="width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سازمان</h4><input id="organization-name-details" type="text" name="organ_name" placeholder="نام سازمان" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" />
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سازمان</h4><input id="organization-name-details" type="text" name="organ_name" placeholder="نام سازمان" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" tabindex="2"/>
                 </div>
                 <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سامانه</h4><input id="product-name-details" type="text" name="product_name" placeholder="نام سامانه" required style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" />
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سامانه</h4><input id="product-name-details" type="text" name="product_name" placeholder="نام سامانه" required style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" tabindex="1"/>
                 </div>
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
                 <div class="col" style="width: 50%;">
                     <div></div>
                     <script>jalaliDatepicker.startWatch()</script>
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" data-jdp name="date" autocomplete="off" placeholder="تاریخ" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" data-jdp name="date" tabindex="7" autocomplete="off" placeholder="تاریخ" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
                 </div>
 
-                <div class="col  " style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                <div class="col  " style="padding-bottom: 0px;padding-top: 3px;padding-left: 25px;margin-right: 0px;width: 50%;height: 20%;">
                     <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4>
-                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="height: auto;">
-                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 8px;padding-top: 0;height: auto;">
+                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" >
+                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 0;padding-top: 0;">
                             
-                            <select required name="contract_number_details1" class="form-select" style="width: 70px;margin-right: 0;margin-left: 0;height: 40px;margin-top: 10px;border-color: black;border-radius: 10px;font-family: bnazanb">
+                            <select required name="contract_number_details1" class="form-select" tabindex="3" style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
                                 <optgroup label>
                                     <option value="م" selected>م</option>
                                     <option value="پ">پ</option>           
                                 </optgroup>
                             </select>
-                            <h3 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 15px;margin-bottom: 4px;">/</h3>
-                            <select required name="contract_number_details2" class="form-select" style="width: 70px;margin-right: 0;margin-left: 0;height: 40px;margin-top: 10px;border-color: black;border-radius: 10px;font-family: bnazanb">
+                            <h2 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 4px;">/</h2>
+                            <select required name="contract_number_details2" class="form-select" tabindex="4" style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
                                 <optgroup label>
                                     <option value="م" >م</option>
                                     <option value="پ" selected>پ</option>           
                                 </optgroup>
                             </select>
-                            <h3 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 15px;margin-bottom: 0;">/</h3>
-                            <input name="contract_number_details3" type="text" name="contract_num" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 10px;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 70px;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
+                            <h2 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 0;">/</h2>
+                            <input name="contract_number_details3" type="text" tabindex="5" name="contract_num" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 0;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 23%;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
                             
-                            <h3 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 15px;">/</h3>
-                            <input name="contract_number_details4" type="text" name="contract_num" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 10px;height: 40px;max-width: 100%;width: 70px;" dir="rtl" />
+                            <h2 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 0;">/</h2>
+                            <input name="contract_number_details4" type="text" tabindex="6" name="contract_num" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 0;height: 40px;max-width: 100%;width: 23%;" dir="rtl" />
                         </div>
                     </div>
                 </div>
@@ -226,14 +227,14 @@
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
                 <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: auto;margin-bottom: 10px;">تصویر صفحه اول قرارداد</h4><input required name="photo_details" class="form-control" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
+                    <h4 style="text-align: right;font-family: bnazanb;height: auto;margin-bottom: 10px;">تصویر صفحه اول قرارداد</h4><input required name="photo_details" tabindex="8" class="form-control" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
                 </div>
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
                 <div class="col" style="width: 49%;">
                     <div class="row" style="width: 100%;">
-                        <div class="col"><button id="cancel-post-create-btn" class="btn btn-primary justify-content-center align-items-center" type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
-                        <div class="col"><button class="btn btn-primary" type="submit" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ایجاد</button></div>
+                        <div class="col"><button id="cancel-post-create-btn" tabindex="10" class="btn btn-primary justify-content-center align-items-center" type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                        <div class="col"><button class="btn btn-primary" type="submit" tabindex="9" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ایجاد</button></div>
                     </div>
                 </div>
             </div>
@@ -247,6 +248,16 @@
             <h5 class="d-xl-flex justify-content-xl-start align-items-xl-center" style="direction: rtl;text-align: right;font-family: bnazanb;width: 100%;height: 100%;color: rgb(255,255,255);padding-bottom: 0;margin-bottom: 0;"></h5>
         </div>
 
+
+
+        <div id="image-preview" class="container" style="top: 15%;left: 5%;z-index: 110;width: 90%;height: 80%;padding: 0;padding-top: 0;padding-bottom: 0;position: fixed;max-width: none;display: none;">
+            <div class="row gy-4 row-cols-1 row-cols-md-2" style="width:100%;height:100%;">
+                <div class="col" style="width:100%;height:100%;" >
+                    <button id="img-close-btn" class="btn-close" type="button" aria-label="Close" ></button>
+                    <div style="width:100%;height:100%;background-color: #adadad;"><img id="image-to-show" style="object-fit: contain;width:100%;height:100%;"  /></div>
+                </div>
+            </div>
+        </div>
 
     </main>
 </body>

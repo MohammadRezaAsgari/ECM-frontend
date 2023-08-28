@@ -10,8 +10,14 @@ const newPostForm = document.getElementById('create-new-post-panel')
 const search_form = document.getElementById('search-form')
 const  search_text = document.getElementById('search-text')
 const search_header_template = document.getElementById('search_header_template').innerHTML
+const img_download_btn = document.getElementById('existing-image-download-btn')
+const img_preview_btn = document.getElementById('existing-image-preview-btn')
+const img_preview = document.getElementById('image-preview')
+const img_close_btn = document.getElementById('img-close-btn')
+const image_to_show = document.getElementById('image-to-show')
 let token = readCookie('token')
 let selected_post_id;
+let image_url = ''
 
 
 FETCH_POSTS()
@@ -117,8 +123,10 @@ function postManageBtnHandler(event) {
     response2.then( res=>{
         if(res.type==='image/jpeg'){
             const imageUrl = URL.createObjectURL(res)
-            document.getElementById('existing-image-download-btn').href =  imageUrl
-            document.getElementById('existing-image-download-btn').style.display = 'flex'
+            img_download_btn.href =  imageUrl
+            img_download_btn.style.display = 'flex'
+            img_preview_btn.style.display = 'flex'
+            image_url = imageUrl
         }
     }
     ).catch(err =>  {
@@ -156,7 +164,7 @@ function postDeleteBtnHandler(event) {
 
 
 
-function addPostBtnHandler(event){
+function addPostBtnHandler(){
     toggleWindowOpacity('0.4',true)
     newPostForm.style.display = 'block'
     disableScroll()
@@ -191,7 +199,13 @@ logOutBtn.addEventListener('click', (e)=> {
     response =  postData(body,"POST",assessmentsListCreateViewUrl )
     response.then(async res => {
         if(Object.keys(res).length===1){
-            myAlert(res[Object.keys(res)[0]],false)
+            msg = `${res[Object.keys(res)[0]]}`.replace('contract','قرارداد','contract number','شماره پرونده')
+            msg = msg.replace('contract number','شماره پرونده')
+            msg = msg.replace('product_name','نام سامانه')
+            msg = msg.replace('company_name', 'نام سازمان')
+            msg = msg.replace(',', ' و' )
+
+            myAlert(msg,false)
             return
         }
         
@@ -237,7 +251,14 @@ function updatePostHandler(event){
         
 
         if(Object.keys(res).length===1){
-            myAlert(res[Object.keys(res)[0]],false)
+
+            msg = `${res[Object.keys(res)[0]]}`.replace('contract','قرارداد','contract number','شماره پرونده')
+            msg = msg.replace('contract number','شماره پرونده')
+            msg = msg.replace('product_name','نام سامانه')
+            msg = msg.replace('company_name', 'نام سازمان')
+            msg = msg.replace(',', ' و' )
+
+            myAlert(msg,false)
             return
         }
         
@@ -259,13 +280,21 @@ function updatePostHandler(event){
       ).catch(err=> console.log(`${err} : خطایی رخ داده`) )
 }
 
-//////////////////////////////////okey nist
+
 function searchHandler(e){
     e.preventDefault()
-    document.getElementById('home-btn').style.background = null
-    no_content_massage.style.display = "none"
     form = e.target
     formFields = form.elements
+
+    if(!formFields.organ_name.value && 
+        !formFields.product_name.value &&
+        !formFields.contract_num.value)
+        return
+
+
+    document.getElementById('home-btn').style.background = null
+    no_content_massage.style.display = "none"
+
     let search_factors_all = []
     let query_params = `?`
     search_factors_all.push(formFields.organ_name.value)
@@ -315,7 +344,8 @@ cancel_post_edit_btn.addEventListener('click', (e)=> {
     toggleWindowOpacity('1',false)
     enableScroll()
     managePostWindows.style.display = 'none'
-    document.getElementById('existing-image-download-btn').style.display  = 'none'
+    img_download_btn.style.display  = 'none'
+    img_preview_btn.style.display  = 'none'
 })
 
 
@@ -333,3 +363,23 @@ newPostForm.addEventListener('submit', newPostHanlder)
 managePostWindows.addEventListener('submit', updatePostHandler)
 
 search_form.addEventListener('submit',searchHandler)
+
+
+const getMeta = (url, cb) => {
+    const img = new Image();
+    img.onload = () => cb(null, img);
+    img.onerror = (err) => cb(err);
+    img.src = url;
+  };
+  
+
+img_preview_btn.addEventListener('click' , (e)=>{
+    e.preventDefault()
+    image_to_show.src = `${image_url}`
+  img_preview.style.display = 'block'
+})
+
+img_close_btn.addEventListener('click', (e)=>{
+    e.preventDefault()
+    img_preview.style.display = 'none'
+})

@@ -1,4 +1,4 @@
-//const baseUrl = 'http://192.168.43.111:8000/'
+//const baseUrl = 'http://192.168.42.114:8000/'
 const baseUrl = 'http://127.0.0.1:8000/'
 const tokenObtainPairViewUrl = baseUrl + 'api/token/'
 const tokenRefreshViewUrl = baseUrl + 'api/token/refresh/'

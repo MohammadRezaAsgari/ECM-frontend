@@ -70,10 +70,10 @@ function editUserHandler(e){
     change_user_and_pass_response =  postData(body1,"POST",changeUsernameAndPasswordUrl )
     change_user_and_pass_response.then(result => {
         if(result.error){
-            alert(result.status)
+            myAlert(result.status,false)
             return
         }
-        alert(result.status)
+        myAlert(result.status,true)
         setTimeout(function() {location.reload()}, 2000)
         return
         })}
