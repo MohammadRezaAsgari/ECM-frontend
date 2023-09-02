@@ -1,20 +1,26 @@
 const post_template = document.getElementById('POST_TEMPLATE').innerHTML
 const no_content_massage = document.getElementById('no-content-massage')
-const card_container = document.getElementById('card-container')
+const card_container_for_delete = document.getElementById('card-container')
 const logOutBtn = document.getElementById('logout-btn')
 const mainTag = document.querySelector('main')
-const managePostWindows = document.getElementById('manage-post-panel')
-const cancel_post_edit_btn = document.getElementById('cancel-post-edit-btn')
+
+
+
+const cancel_post_edit_btn = document.querySelectorAll('.manage_panel_close_btn')
 const cancel_post_create_btn = document.getElementById('cancel-post-create-btn')
 const newPostForm = document.getElementById('create-new-post-panel')
 const search_form = document.getElementById('search-form')
 const  search_text = document.getElementById('search-text')
 const search_header_template = document.getElementById('search_header_template').innerHTML
-const img_download_btn = document.getElementById('existing-image-download-btn')
-const img_preview_btn = document.getElementById('existing-image-preview-btn')
+
+
 const img_preview = document.getElementById('image-preview')
 const img_close_btn = document.getElementById('img-close-btn')
 const image_to_show = document.getElementById('image-to-show')
+const certificate_renewal_selector = document.getElementById('certificate_renewal_selector')
+
+const img_preview_btn = document.querySelectorAll('#existing-image-preview-btn')
+
 let token = readCookie('token')
 let selected_post_id;
 let image_url = ''
@@ -40,54 +46,6 @@ function FETCH_POSTS(){
     
 }
 
-
-
-
-function disableScroll(e) {
-    TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    LeftScroll = window.pageXOffset || document.documentElement.scrollLeft,
-
-    // if scroll happens, set it to the previous value
-    window.onscroll = function() {
-    window.scrollTo(LeftScroll, TopScroll);
-            };
- }
-function enableScroll(e) {
-    window.onscroll = function() {};
-}
-
-function toggleWindowOpacity(opac,disabled){
-    page = document.querySelectorAll('.home')
-    home_btns = document.querySelectorAll('.home button')
-    home_inputs_btns = document.querySelectorAll('.home input')
-    for (node of page)
-        node.style.opacity = opac
-    for (btn of home_btns)
-        btn.disabled = disabled
-    for (ins of home_inputs_btns)
-        ins.disabled = disabled
-}
-
-// function windowsClickOutside(event){
-//     var element = document.getElementById("manage-post-panel")
-//     if (element.style.display==='none'){
-//         element = document.getElementById("create-new-post-panel")
-//         if (element.style.display==='none')
-//             return
-//     }
-//     var rect = element.getBoundingClientRect()
-//     if (event.clientY < rect.top-20 || 
-//         event.clientY > rect.bottom+20 ||
-//         event.clientX < rect.left-20 ||
-//         event.clientX > rect.right+20){
-//             if (!confirm('آیا مطمین هستید؟'))
-//                 return
-//             toggleWindowOpacity('1',false)
-//             enableScroll()
-//             element.style.display = 'none'
-//         }
-
-// }
 
 
 function postManageBtnHandler(event) {
@@ -139,7 +97,8 @@ function postManageBtnHandler(event) {
     })
   }
 
-
+// post delete Btn Handler
+card_container_for_delete.addEventListener('click', postDeleteBtnHandler)
 function postDeleteBtnHandler(event) {
     const isButton = event.target.nodeName === 'BUTTON'
     if (!isButton || 
@@ -170,13 +129,10 @@ function addPostBtnHandler(){
     disableScroll()
 }
 
-logOutBtn.addEventListener('click', (e)=> {
-    eraseCookie('token')
-    window.location.href = "index"
-})
 
 
- function newPostHanlder(event){
+
+function newPostHanlder(event){
     event.preventDefault()
     form = event.target
     formFields = form.elements
@@ -281,6 +237,8 @@ function updatePostHandler(event){
 }
 
 
+
+search_form.addEventListener('submit',searchHandler)
 function searchHandler(e){
     e.preventDefault()
     form = e.target
@@ -331,55 +289,95 @@ function searchHandler(e){
         })
 }
 
-//document.addEventListener('click', windowsClickOutside)
 
-// post Manage Btn Handler
-card_container.addEventListener('click',postManageBtnHandler)
 
-// post delete Btn Handler
-card_container.addEventListener('click', postDeleteBtnHandler)
 
-cancel_post_edit_btn.addEventListener('click', (e)=> {
-    e.preventDefault()
-    toggleWindowOpacity('1',false)
-    enableScroll()
-    managePostWindows.style.display = 'none'
-    img_download_btn.style.display  = 'none'
-    img_preview_btn.style.display  = 'none'
+
+
+
+
+
+
+
+// cancel_post_create_btn.addEventListener('click', (e)=>{
+//     e.preventDefault()
+//     toggleWindowOpacity('1',false)
+//     enableScroll()
+//     newPostForm.style.display = 'none'
+// })
+
+
+//newPostForm.addEventListener('submit', newPostHanlder)
+
+//managePostWindows.addEventListener('submit', updatePostHandler)
+
+
+
+
+
+img_preview_btn.forEach((item) => {
+    item.addEventListener('click', previewImage)
 })
-
-
-
-cancel_post_create_btn.addEventListener('click', (e)=>{
-    e.preventDefault()
-    toggleWindowOpacity('1',false)
-    enableScroll()
-    newPostForm.style.display = 'none'
-})
-
-
-newPostForm.addEventListener('submit', newPostHanlder)
-
-managePostWindows.addEventListener('submit', updatePostHandler)
-
-search_form.addEventListener('submit',searchHandler)
-
-
-const getMeta = (url, cb) => {
-    const img = new Image();
-    img.onload = () => cb(null, img);
-    img.onerror = (err) => cb(err);
-    img.src = url;
-  };
-  
-
-img_preview_btn.addEventListener('click' , (e)=>{
+function previewImage(e){
     e.preventDefault()
     image_to_show.src = `${image_url}`
-  img_preview.style.display = 'block'
-})
+    img_preview.style.display = 'block'
+}
 
 img_close_btn.addEventListener('click', (e)=>{
     e.preventDefault()
     img_preview.style.display = 'none'
 })
+
+
+certificate_renewal_selector.addEventListener('change',(e)=>{
+    if (certificate_renewal_selector.value == 'yes')
+        document.getElementById('certificate_renewal_description').disabled = false
+    else
+        document.getElementById('certificate_renewal_description').disabled = true
+    })
+
+
+document.getElementById('close_post_edit_panel').addEventListener('click',close_post_edit)
+cancel_post_edit_btn.forEach((item) => {
+    item.addEventListener('click', close_post_edit)
+})
+function close_post_edit(e){
+    location.reload()
+    // e.preventDefault()
+    // toggleWindowOpacity('1',false)
+    // enableScroll()
+    // managePostWindows.style.display = 'none'
+    // img_download_btn.style.display  = 'none'
+    // img_preview_btn.style.display  = 'none'
+}
+
+logOutBtn.addEventListener('click', (e)=> {
+    eraseCookie('token')
+    window.location.href = "index"
+})
+
+function disableScroll(e) {
+    TopScroll = window.pageYOffset || document.documentElement.scrollTop;
+    LeftScroll = window.pageXOffset || document.documentElement.scrollLeft,
+
+    // if scroll happens, set it to the previous value
+    window.onscroll = function() {
+    window.scrollTo(LeftScroll, TopScroll);
+            };
+ }
+function enableScroll(e) {
+    window.onscroll = function() {};
+}
+
+function toggleWindowOpacity(opac,disabled){
+    page = document.querySelectorAll('.home')
+    home_btns = document.querySelectorAll('.home button')
+    home_inputs_btns = document.querySelectorAll('.home input')
+    for (node of page)
+        node.style.opacity = opac
+    for (btn of home_btns)
+        btn.disabled = disabled
+    for (ins of home_inputs_btns)
+        ins.disabled = disabled
+}

@@ -22,10 +22,13 @@
     <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-2.css">
     <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min-1.css">
     <link rel="stylesheet" href="assets/fonts/cdnjs.cloudflare.com_ajax_libs_font-awesome_4.7.0_css_font-awesome.min.css">
+    <script src="assets/js/js/easy-number-separator.js"></script>
 
     <script src="assets/js/app.js"></script>
     <script src="assets/js/authentication.js" ></script>
     <script src="assets/js/home.js" defer></script>
+    <script src="assets/js/home_edit_post.js" defer></script>
+    <script src="assets/js/home_new_post.js" defer></script>
 </head>
 
 <body>
@@ -58,6 +61,421 @@
             <h3 id="no-content-massage" style="display: none;;text-align:right;font-family:bnazanb;margin-top:10px;">هیچ رکوردی وجود ندارد</h3>
             
         </div>
+
+ 
+
+
+
+
+        <div id="manage-post-panel" class="container" style="top: 50%;left: 50%;z-index: 100;position: fixed;display: none;box-shadow: 0px 0px 13px 3px var(--bs-emphasis-color);transform: translate(-50%,-45%);border-radius: 30px;width: 90%;height: 80%;padding: 25px 60px 50px;opacity: 1;backdrop-filter: opacity(1);background: #ffffff;text-align: center;margin-bottom: 0px;overflow: auto;">
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xxl-flex flex-row-reverse justify-content-xxl-end align-items-xxl-center" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;margin-bottom: 25px;">
+                <div class="col" style="width: 90%;">
+                    <h1 style="text-align: center;font-family: bnazanb;width: 90%;padding-right: 0;margin-top: 0;margin-bottom: 0;">ویرایش قرارداد</h1>
+                </div>
+                <div class="col" style="width: 10%;"><button id="close_post_edit_panel" class="btn-close" type="button" aria-label="Close"></button></div>
+            </div>
+
+            <div style="height: 80%;overflow: auto;">
+
+
+                <form id="contract_details_edit" style="overflow: visible;height: auto;border-radius: 30px;border-width: 2px;border-style: solid;padding-top: 0px;padding-right: 20px;padding-bottom: 20px;padding-left: 0px;margin-bottom: 20px;">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;margin-bottom: 0;">
+                        <div class="col" style="width: 100%;">
+                            <h2 style="text-align: right;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 0;margin-bottom: 0;">اطلاعات قرارداد</h2>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;"> *نام محصول</h4><input id="product-name-details" type="text" name="product_name" placeholder="نام محصول" required style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;"  dir="rtl" />
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;"> * نام شرکت</h4><input id="organization-name-details" type="text" name="organ_name" placeholder="نام شرکت" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" name="date" data-jdp placeholder="تاریخ" autocomplete="off" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                        </div>
+                        <div class="col manage-post-panel_contract_num" style="padding-bottom: 0px;padding-top: 3px;padding-left: 25px;margin-right: 0px;width: 50%;height: 20%;">
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;"> * شماره قرارداد</h4>
+                            <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around">
+                                <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 0;padding-top: 0;"><select id="contract_number_details1" class="form-select form-select form-select" name="contract_number_details1" required style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb;" >
+                                        <optgroup label>
+                                            <option value="م" selected>م</option>
+                                            <option value="پ">پ</option>
+                                        </optgroup>
+                                    </select>
+                                    <h2 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 4px;">/</h2><select id="contract_number_details2" class="form-select form-select form-select" name="contract_number_details2" required style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb;" >
+                                        <optgroup label>
+                                            <option value="م">م</option>
+                                            <option value="پ" selected>پ</option>
+                                        </optgroup>
+                                    </select>
+                                    <h2 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 0;">/</h2><input id="contract_number_details3" type="text" name="contract_number_details3" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 0;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 23%;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
+                                    <h2 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 0;">/</h2><input id="contract_number_details4" type="text" name="contract_number_details4" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 0;height: 40px;max-width: 100%;width: 23%;"  dir="rtl" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">مبلغ کل قرارداد (ریال)</h4><input type="text" class="number-separator" name="contract_total_price" placeholder="100,000,000" style="margin: 0 0px;margin-right: 10px;padding-left: 5px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;text-align: left;"  dir="ltr" />
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">سررسید قرارداد</h4><input name="contract_deadline_date" data-jdp placeholder="تاریخ" autocomplete="off"  required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 style="text-align: right;font-family: bnazanb;">تصویر صفحه اول قرارداد</h4>
+                                
+                                <h6 id="contract_first_page_photo_notavailable_msg" class="justify-content-center align-items-center" style="text-align: right;font-family: bnazanb;font-size: 13px;display: none;width: 70.7px;padding-top: 2px;color: var(--bs-gray);margin-right: 10px;">بارگذاری نشده</h6>
+                                <a id="contract_first_page_photo_download_btn" download="contract_first_page_photo.jpeg" class="justify-content-center align-items-center" style="text-decoration: none;width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: rgb(11,94,215);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;" >دریافت</a>
+                                <a id="contract_first_page_photo_preview_btn" class="justify-content-center align-items-center" style="text-decoration: none;width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: var(--bs-purple);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;">نمایش</a>
+                            
+                            </div><input class="form-control form-control form-control form-control" type="file" name="contract_first_page_photo" style="width: 100%;height: 49%;margin-right: 10px;margin-top: 5px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;"  />
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تخفیف مصوب (درصد)</h4><input id="organization-name-details-3" type="text" name="approved_discount" placeholder="%" style="margin: 0 0px;margin-right: 10px;padding-left: 5px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: left;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;"  dir="ltr" />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;height: auto;">
+                        <div class="col" style="width: 100%;height: auto;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 style="text-align: right;font-family: bnazanb;height: 20%;width: auto;display: inline;">تمدید گواهی</h4><select id="certificate_renewal_selector" class="form-select form-select" name="certificate_renewal" style="width: 10%;display: inline;font-family: bnazanb;margin-right: 20px;margin-bottom: 0px;border-color: var(--bs-emphasis-color);">
+                                    <option value="yes">بله</option>
+                                    <option value="no" selected>خیر</option>
+                                </select>
+                            </div>
+                            <div></div>
+                            <textarea id="certificate_renewal_description" name="certificate_renewal_description" placeholder="توضیحات"  cols="30" rows="10"  style="word-wrap: break-all;margin: 0 0px;margin-right: 10px;padding-bottom: 90px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;border-width: 1px;height: 150px;width: 100%;display: flex;text-align: right;"  dir="rtl" disabled></textarea>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
+                        <div class="col" style="width: 49%;">
+                            <div class="row" style="width: 100%;">
+                                <div class="col"><button id="cancel-post-edit-btn-1" class="btn btn-primary justify-content-center align-items-center manage_panel_close_btn"  type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                                <div class="col"><button class="btn btn-primary" type="submit" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+                
+
+                <form id="contact_details_edit" style="overflow: visible;height: auto;border-radius: 30px;border-width: 2px;border-style: solid;padding-top: 0px;padding-right: 20px;padding-bottom: 20px;padding-left: 0px;margin-bottom: 20px;">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;margin-bottom: 0;">
+                        <div class="col" style="width: 100%;">
+                            <h2 style="text-align: right;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 0;margin-bottom: 0;">اطلاعات تماس متقاضی</h2>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تلفن ثابت</h4><input id="product-name-details-1" type="text" name="landline_phone_number" placeholder="تلفن ثابت" style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;"  dir="rtl" />
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام رابط</h4><input id="organization-name-details-4" type="text" name="interface_name" placeholder=" نام رابط" style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;"  dir="rtl" />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">کد پستی</h4><input id="organization-name-details-5" type="text" name="postal_code" placeholder="کد پستی" style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;"  dir="rtl" />
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تلفن همراه</h4><input id="organization-name-details-6" type="text" name="phone_number" placeholder="تلفن همراه" style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;height: auto;">
+                        <div class="col" style="width: 100%;height: auto;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 style="text-align: right;font-family: bnazanb;height: 20%;width: auto;display: inline;margin-bottom: 0;">آدرس</h4>
+                            </div>
+                            <div></div>
+                            <textarea id="organization-name-details-7" type="text" name="address" placeholder="آدرس" style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;border-width: 1px;height: 150px;width: 100%;display: flex;text-align: right;"  dir="rtl" ></textarea>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
+                        <div class="col" style="width: 49%;">
+                            <div class="row" style="width: 100%;">
+                                <div class="col"><button id="cancel-post-edit-btn-2" class="btn btn-primary justify-content-center align-items-center manage_panel_close_btn"  type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                                <div class="col"><button class="btn btn-primary" type="submit"  style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                
+
+                <form id="phase_one_edit" style="overflow: visible;height: auto;border-radius: 30px;border-width: 2px;border-style: solid;padding-top: 0px;padding-right: 20px;padding-bottom: 20px;padding-left: 0px;margin-bottom: 20px;">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;margin-bottom: 0;">
+                        <div class="col" style="width: 100%;">
+                            <h2 style="text-align: right;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 0;margin-bottom: 0;">اطلاعات فاز اول</h2>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ واریز فاز اول</h4><input id="date-details" name="first_phase_deposit_date" data-jdp placeholder="تاریخ" autocomplete="off"  required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">مبلغ فاز اول (ریال)</h4><input id="organization-name-details-9" type="text" name="first_phase_price" placeholder="100,000,000" style="margin: 0 0px;margin-right: 10px;padding-left: 5px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: left;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;"  dir="ltr" />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">سررسید فاز اول</h4><input id="date-details" name="first_phase_deadline_date" data-jdp placeholder="تاریخ" autocomplete="off"  required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                        </div>
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 class="d-xl-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;height: 25px;margin-bottom: 10px;width: 161px;"><br />تصویر فیش واریزی<br /><br /></h4>
+                                
+                                <h6 id="first_phase_receipt_photo_notavailable_msg" class="justify-content-center align-items-center" style="text-align: right;font-family: bnazanb;font-size: 13px;display: none;width: 70.7px;padding-top: 2px;color: var(--bs-gray);margin-right: 10px;">بارگذاری نشده</h6>
+                                <a class="justify-content-center align-items-center" download="first_phase_receipt_photo.jpeg" style="text-decoration: none;width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: rgb(11,94,215);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;">دریافت</a>
+                                <a id="existing-image-preview-btn" class="justify-content-center align-items-center" style="text-decoration: none;width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: var(--bs-purple);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;">نمایش</a>
+                            
+                            </div><input class="form-control form-control form-control form-control" type="file" name="first_phase_receipt_photo" style="width: 100%;height: 49%;margin-right: 10px;margin-top: 5px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;"  />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 class="d-xl-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;height: 25px;margin-bottom: 10px;width: 240px;">اسناد نهایی و خروجی فاز اول</h4>
+                                
+                                <h6 id="first_phase_documents_notavailable_msg" class="justify-content-center align-items-center" style="text-align: right;font-family: bnazanb;font-size: 13px;display: none;width: 70.7px;padding-top: 2px;color: var(--bs-gray);margin-right: 10px;">بارگذاری نشده</h6>
+                                <a class="justify-content-center align-items-center" download="first_phase_documents" style="width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: rgb(11,94,215);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;">دریافت</a>
+                            
+                            </div><input class="form-control form-control form-control form-control" type="file"  name="first_phase_documents" style="width: 100%;height: 49%;margin-right: 10px;margin-top: 5px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;"  />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
+                        <div class="col" style="width: 49%;">
+                            <div class="row" style="width: 100%;">
+                                <div class="col"><button id="cancel-post-edit-btn-3" class="btn btn-primary justify-content-center align-items-center manage_panel_close_btn" type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                                <div class="col"><button class="btn btn-primary" type="submit"  style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+                <form id="phase_two_edit" style="overflow: auto;height: auto;border-radius: 30px;border-width: 2px;border-style: solid;padding-top: 0px;padding-right: 20px;padding-bottom: 20px;padding-left: 0px;margin-bottom: 20px;">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;margin-bottom: 0;">
+                        <div class="col" style="width: 100%;">
+                            <h2 style="text-align: right;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 0;margin-bottom: 0;">اطلاعات فاز دوم</h2>
+                        </div>
+                    </div>
+                     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ واریز فاز دوم</h4><input id="date-details" name="second_phase_deposit_date" data-jdp placeholder="تاریخ" autocomplete="off"  required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">مبلغ فاز دوم (ریال)</h4><input id="organization-name-details-8" type="text" name="second_phase_price" placeholder="100,000,000" style="margin: 0 0px;margin-right: 10px;padding-left: 5px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: left;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;"  dir="ltr" />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">سررسید فاز دوم</h4><input id="date-details" name="second_phase_deadline_date" data-jdp placeholder="تاریخ" autocomplete="off"  required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                        </div>
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 class="d-xl-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;height: 25px;margin-bottom: 10px;width: 161px;"><br />تصویر فیش واریزی<br /><br /></h4>
+                                
+                                <h6 id="second_phase_receipt_photo_notavailable_msg" class="justify-content-center align-items-center" style="text-align: right;font-family: bnazanb;font-size: 13px;display: none;width: 70.7px;padding-top: 2px;color: var(--bs-gray);margin-right: 10px;">بارگذاری نشده</h6>
+                                <a class="justify-content-center align-items-center" download="second_phase_receipt_photo.jpeg" style="text-decoration: none;width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: rgb(11,94,215);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;">دریافت</a>
+                                <a  id="existing-image-preview-btn" class="justify-content-center align-items-center"  style="text-decoration: none;width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: var(--bs-purple);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;">نمایش</a>
+                            
+                            </div><input class="form-control form-control form-control form-control" type="file" name="second_phase_receipt_photo" style="width: 100%;height: 49%;margin-right: 10px;margin-top: 5px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;"  />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 class="d-xl-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;height: 25px;margin-bottom: 10px;width: 267px;"><br /><br />سند گزارش آزمون آسیب پذیری<br /><br /><br /></h4>
+                                
+                                <h6 id="second_phase_vulnerability_document_notavailable_msg" class="justify-content-center align-items-center" style="text-align: right;font-family: bnazanb;font-size: 13px;display: none;width: 70.7px;padding-top: 2px;color: var(--bs-gray);margin-right: 10px;">بارگذاری نشده</h6>
+                                <a class="justify-content-center align-items-center" download="second_phase_vulnerability_document" style="width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: rgb(11,94,215);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;text-decoration: none;">دریافت</a>
+                            
+                            </div><input class="form-control form-control form-control form-control" type="file" name="second_phase_vulnerability_document" style="width: 100%;height: 49%;margin-right: 10px;margin-top: 5px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
+                        </div>
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 class="d-xl-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;height: 25px;margin-bottom: 10px;width: 230px;"><br /><br />سند گزارش آزمون کارکردی<br /><br /><br /></h4>
+                               
+                                <h6 id="second_phase_functional_document_notavailable_msg" class="justify-content-center align-items-center" style="text-align: right;font-family: bnazanb;font-size: 13px;display: none;width: 70.7px;padding-top: 2px;color: var(--bs-gray);margin-right: 10px;">بارگذاری نشده</h6>
+                                <a class="justify-content-center align-items-center" download="second_phase_functional_document" style="width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: rgb(11,94,215);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;text-decoration: none;">دریافت</a>
+                           
+                            </div><input class="form-control form-control form-control form-control" type="file" name="second_phase_functional_document" style="width: 100%;height: 49%;margin-right: 10px;margin-top: 5px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;"  />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
+                        <div class="col" style="width: 49%;">
+                            <div class="row" style="width: 100%;">
+                                <div class="col"><button id="cancel-post-edit-btn-4" class="btn btn-primary justify-content-center align-items-center manage_panel_close_btn"  type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                                <div class="col"><button class="btn btn-primary" type="submit"  style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+
+
+                <form id="supplement_edit" style="height: auto;border-radius: 30px;border-width: 2px;border-style: solid;padding-top: 0px;padding-right: 20px;padding-bottom: 20px;padding-left: 0px;margin-bottom: 20px;">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;margin-bottom: 0;">
+                        <div class="col" style="width: 100%;">
+                            <h2 style="text-align: right;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 0;margin-bottom: 0;">متمم قرارداد</h2>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">مبلغ قرارداد (ریال)</h4><input id="organization-name-details-10" type="text" name="supplement_price" placeholder="100,000,000"style="margin: 0 0px;margin-right: 10px;padding-left: 5px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align:left;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;"  dir="ltr" />
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <div></div>
+                            <div></div>
+                            <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ ابلاغ قرارداد متمم</h4><input id="date-details" name="supplement_date" data-jdp placeholder="تاریخ" autocomplete="off"  required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                        <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                            <div class="d-flex flex-row-reverse">
+                                <h4 class="d-xl-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;height: 25px;margin-bottom: 10px;width: 161px;"><br />تصویر فیش واریزی<br /><br /></h4>
+                                
+                                <h6 id="supplement_receipt_photo_notavailable_msg" class="justify-content-center align-items-center" style="text-align: right;font-family: bnazanb;font-size: 13px;display: none;width: 70.7px;padding-top: 2px;color: var(--bs-gray);margin-right: 10px;">بارگذاری نشده</h6>
+                                <a class="justify-content-center align-items-center" download="supplement_receipt_photo.jpeg" style="text-decoration: none;width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: rgb(11,94,215);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;" >دریافت</a>
+                                <a  id="existing-image-preview-btn" class="justify-content-center align-items-center"  style="text-decoration: none;width: 50px;height: 30px;margin: 0;margin-left: 0px;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;font-family: bnazanb;text-align: center;background: var(--bs-purple);border-style: none;border-radius: 12px;position: static;display: none;overflow: auto;color: var(--bs-body-bg);font-size: 12px;margin-right: 3px;">نمایش</a>
+                            
+                            </div><input class="form-control form-control form-control form-control" type="file" name="supplement_receipt_photo" style="width: 100%;height: 49%;margin-right: 10px;margin-top: 5px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;"  />
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
+                        <div class="col" style="width: 49%;">
+                            <div class="row" style="width: 100%;">
+                                <div class="col"><button id="cancel-post-edit-btn-5" class="btn btn-primary justify-content-center align-items-center manage_panel_close_btn"  type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                                <div class="col"><button class="btn btn-primary" type="submit"  style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </form> 
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+        <form id="create-new-post-panel" class="container"  enctype="multipart/form-data" style="top: 20%;left: 20%;z-index: 100;position: fixed;display: none;box-shadow: 0px 0px 13px 3px var(--bs-emphasis-color);border-radius: 30px;width: 60%;height:555px;padding: 25px 60px 50px;opacity: 1;backdrop-filter: opacity(1);background: #ffffff;text-align: center;margin-bottom: 0px;">
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                <div class="col" style="width: 100%;">
+                    <h1 style="text-align: center;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 20px;margin-bottom: 0;">ایجاد قرارداد جدید</h1>
+                </div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                <div class="col" style="width: 50%;">
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سازمان</h4><input id="organization-name-details" type="text" name="organ_name" placeholder="نام سازمان" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" />
+                </div>
+                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سامانه</h4><input id="product-name-details" type="text" name="product_name" placeholder="نام سامانه" required style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" />
+                </div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                <div class="col" style="width: 50%;">
+                    <div></div>
+                    <script>jalaliDatepicker.startWatch()</script>
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" data-jdp name="date"  autocomplete="off" placeholder="تاریخ" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
+                </div>
+
+                <div class="col  " style="padding-bottom: 0px;padding-top: 3px;padding-left: 25px;margin-right: 0px;width: 50%;height: 20%;">
+                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4>
+                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" >
+                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 0;padding-top: 0;">
+                            
+                            <select required name="contract_number_details1" class="form-select"  style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
+                                <optgroup label>
+                                    <option value="م" selected>م</option>
+                                    <option value="پ">پ</option>           
+                                </optgroup>
+                            </select>
+                            <h2 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 4px;">/</h2>
+                            <select required name="contract_number_details2" class="form-select"  style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
+                                <optgroup label>
+                                    <option value="م" >م</option>
+                                    <option value="پ" selected>پ</option>           
+                                </optgroup>
+                            </select>
+                            <h2 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 0;">/</h2>
+                            <input name="contract_number_details3" type="text" name="contract_num" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 0;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 23%;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
+                            
+                            <h2 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 0;">/</h2>
+                            <input name="contract_number_details4" type="text"  name="contract_num" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 0;height: 40px;max-width: 100%;width: 23%;" dir="rtl" />
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
+                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
+                    <h4 style="text-align: right;font-family: bnazanb;height: auto;margin-bottom: 10px;">تصویر صفحه اول قرارداد</h4><input required name="photo_details"  class="form-control" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
+                </div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
+                <div class="col" style="width: 49%;">
+                    <div class="row" style="width: 100%;">
+                        <div class="col"><button id="cancel-post-create-btn"  class="btn btn-primary justify-content-center align-items-center" type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
+                        <div class="col"><button class="btn btn-primary" type="submit" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ایجاد</button></div>
+                    </div>
+                </div>
+            </div>
+        </form> 
+
+
+
+
+
+        <div id="massage-box" class="alert alert-success text-end" role="alert" style="position: fixed;display: none;top: 90%;left: 68%;z-index: 101;width: 30%;margin: 0px;margin-right: 20px;border-radius: 15px;height: 50px;padding-bottom: 20px;background: var(--bs-green);box-shadow: 0px 0px 5px 2px var(--bs-green);border-style: none;">
+            <h5 class="d-xl-flex justify-content-xl-start align-items-xl-center" style="direction: rtl;text-align: right;font-family: bnazanb;width: 100%;height: 100%;color: rgb(255,255,255);padding-bottom: 0;margin-bottom: 0;"></h5>
+        </div>
+
+
+
+        <div id="image-preview" class="container" style="top: 15%;left: 5%;z-index: 110;width: 90%;height: 80%;padding: 0;padding-top: 0;padding-bottom: 0;position: fixed;max-width: none;display: none;">
+            <div class="row gy-4 row-cols-1 row-cols-md-2" style="width:100%;height:100%;">
+                <div class="col" style="width:100%;height:100%;" >
+                    <button id="img-close-btn" class="btn-close" type="button" aria-label="Close" ></button>
+                    <div style="width:100%;height:100%;background-color: #adadad;"><img id="image-to-show" style="object-fit: contain;width:100%;height:100%;"  /></div>
+                </div>
+            </div>
+        </div>
+
+
 
         <script type="text/template" id="POST_TEMPLATE">  
             <div id="single-card" class="card-body" style="margin-top: 30px;background: #ffffff;border-radius: 30px;box-shadow: 0px 0px 5px 1px #000000;">
@@ -101,165 +519,11 @@
         </script>
 
 
-        <form id="manage-post-panel" class="container" style="top: 20%;left: 20%;z-index: 100;position: fixed;display: none;box-shadow: 0px 0px 13px 3px var(--bs-emphasis-color);border-radius: 30px;width: 60%;height:555px;padding: 25px 60px 50px;opacity: 1;backdrop-filter: opacity(1);background: #ffffff;text-align: center;margin-bottom: 0px;">
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
-                <div class="col" style="width: 100%;">
-                    <h1 style="text-align: center;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 20px;margin-bottom: 0;">ویرایش قرارداد</h1>
-                </div>
-            </div>
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
-                <div class="col" style="width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سازمان</h4><input id="organization-name-details" type="text" name="organ_name" placeholder="نام سازمان" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" tabindex="2"/>
-                </div>
-                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سامانه</h4><input id="product-name-details" type="text" name="product_name" placeholder="نام سامانه" required style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" tabindex="1" />
-                </div>
-            </div>
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
-                <div class="col" style="width: 50%;">
-                    <div></div>
-                    <script>jalaliDatepicker.startWatch()</script>
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" name="date" data-jdp placeholder="تاریخ" autocomplete="off" tabindex="7" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
-                </div>
 
-
-                <div  class="col  manage-post-panel_contract_num" style="padding-bottom: 0px;padding-top: 3px;padding-left: 25px;margin-right: 0px;width: 50%;height: 20%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4>
-                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" >
-                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 0;padding-top: 0;">
-                            
-                            <select required id="contract_number_details1" name="contract_number_details1" tabindex="3" class="form-select" style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
-                                <optgroup label>
-                                    <option value="م">م</option>
-                                    <option value="پ">پ</option>           
-                                </optgroup>
-                            </select>
-                            <h2 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 4px;">/</h2>
-                            <select required id="contract_number_details2" name="contract_number_details2" tabindex="4" class="form-select" style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
-                                <optgroup label>
-                                    <option value="م" >م</option>
-                                    <option value="پ">پ</option>           
-                                </optgroup>
-                            </select>
-                            <h2 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 0;">/</h2>
-                            <input id="contract_number_details3" name="contract_number_details3" type="text" name="contract_num" tabindex="5" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 0;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 23%;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
-                            
-                            <h2 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 0;">/</h2>
-                            <input id="contract_number_details4" name="contract_number_details4" type="text" name="contract_num" tabindex="6" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 0;height: 40px;max-width: 100%;width: 23%;" dir="rtl" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
-                <div id="image-section" class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;"></div>
-                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 class="d-xl-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;height: auto;margin-bottom: 10px;width: auto;">                    
-                        <a id="existing-image-download-btn" class=" justify-content-xl-center align-items-xl-center" download="contract_photo" href="" style="text-decoration: none;display: none;;width: 50px;height: 30px;margin: 0;margin-right: 5px;font-size: 12px;text-align: center;background: rgb(11,94,215);color: var(--bs-body-bg);border-radius: 18px;font-family: bnazanb;">دریافت</a>
-                        <a id="existing-image-preview-btn" class=" justify-content-xl-center align-items-xl-center"  href="" style="text-decoration: none;display: none;;width: 50px;height: 30px;margin: 0;margin-right: 5px;font-size: 12px;text-align: center;background: var(--bs-purple);color: var(--bs-body-bg);border-radius: 18px;font-family: bnazanb;">نمایش</a>
-                        تصویر صفحه اول قرارداد</h4>
-                        <input name="photo_details" class="form-control form-control" tabindex="8" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
-                </div>
-            </div>
-
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
-                <div class="col" style="width: 49%;">
-                    <div class="row" style="width: 100%;">
-                        <div class="col"><button id="cancel-post-edit-btn" tabindex="10" class="btn btn-primary justify-content-center align-items-center" type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
-                        <div class="col"><button class="btn btn-primary" type="submit" tabindex="9" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ویرایش</button></div>
-                    </div>
-                </div>
-            </div>
-        </form>
-
-
-
-
-        <form id="create-new-post-panel" class="container"  enctype="multipart/form-data" style="top: 20%;left: 20%;z-index: 100;position: fixed;display: none;box-shadow: 0px 0px 13px 3px var(--bs-emphasis-color);border-radius: 30px;width: 60%;height:555px;padding: 25px 60px 50px;opacity: 1;backdrop-filter: opacity(1);background: #ffffff;text-align: center;margin-bottom: 0px;">
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
-                <div class="col" style="width: 100%;">
-                    <h1 style="text-align: center;font-family: bnazanb;width: 100%;padding-right: 0;margin-top: 20px;margin-bottom: 0;">ایجاد قرارداد جدید</h1>
-                </div>
-            </div>
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
-                <div class="col" style="width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سازمان</h4><input id="organization-name-details" type="text" name="organ_name" placeholder="نام سازمان" required style="margin: 0 0px;margin-right: 10px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;text-align: right;border-radius: 10px;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" tabindex="2"/>
-                </div>
-                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">نام سامانه</h4><input id="product-name-details" type="text" name="product_name" placeholder="نام سامانه" required style="margin: 0 0px;margin-right: 50px;padding-left: 0px;padding-right: 5px;margin-bottom: 10px;margin-top: 20px;margin-left: 10px;font-family: bnazanb;border-radius: 10px;text-align: right;border-width: 1px;height: 50%;width: 100%;display: flex;" dir="rtl" tabindex="1"/>
-                </div>
-            </div>
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
-                <div class="col" style="width: 50%;">
-                    <div></div>
-                    <script>jalaliDatepicker.startWatch()</script>
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">تاریخ عقد قرارداد</h4><input id="date-details" data-jdp name="date" tabindex="7" autocomplete="off" placeholder="تاریخ" required style="border-radius: 10px;border-width: 1px;margin: 10px;padding: 1px 5px 1px 0px;height: 80%;text-align: center;font-family: bnazanb;display: flex;height: 50%;width: 100%;padding-top: 0px;margin-top: 20px;" />
-                </div>
-
-                <div class="col  " style="padding-bottom: 0px;padding-top: 3px;padding-left: 25px;margin-right: 0px;width: 50%;height: 20%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: 20%;">شماره پرونده</h4>
-                    <div class="row d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" >
-                        <div class="col d-inline-flex flex-grow-0 flex-shrink-0 flex-fill justify-content-around" style="padding-right: 0;padding-left: 0;width: 100%;margin-top: 0;padding-top: 0;">
-                            
-                            <select required name="contract_number_details1" class="form-select" tabindex="3" style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
-                                <optgroup label>
-                                    <option value="م" selected>م</option>
-                                    <option value="پ">پ</option>           
-                                </optgroup>
-                            </select>
-                            <h2 id="header-text-1" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 4px;">/</h2>
-                            <select required name="contract_number_details2" class="form-select" tabindex="4" style="width: 23%;margin-right: 0;margin-left: 0;height: 40px;margin-top: 0;border-color: black;border-radius: 10px;font-family: bnazanb">
-                                <optgroup label>
-                                    <option value="م" >م</option>
-                                    <option value="پ" selected>پ</option>           
-                                </optgroup>
-                            </select>
-                            <h2 id="header-text-2" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-top: 0;margin-bottom: 0;">/</h2>
-                            <input name="contract_number_details3" type="text" tabindex="5" name="contract_num" required style="margin: 0 0px;margin-right: 0;padding-left: 0;padding-right: 0;margin-bottom: 0;margin-top: 0;margin-left: 0;font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;height: 40px;width: 23%;display: flex;max-width: 100%;padding-top: 0;padding-bottom: 0;" dir="rtl" />
-                            
-                            <h2 id="header-text" style="text-align: center;font-family: bnazanb;width: auto;height: auto;margin-bottom: 0;margin-top: 0;">/</h2>
-                            <input name="contract_number_details4" type="text" tabindex="6" name="contract_num" required style="font-family: bnazanb;text-align: center;border-radius: 10px;border-width: 1px;display: flex;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0 0px;margin-left: 0;margin-bottom: 0;margin-right: 0;margin-top: 0;height: 40px;max-width: 100%;width: 23%;" dir="rtl" />
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-xl-end" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;">
-                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 50%;">
-                    <h4 style="text-align: right;font-family: bnazanb;height: auto;margin-bottom: 10px;">تصویر صفحه اول قرارداد</h4><input required name="photo_details" tabindex="8" class="form-control" type="file" style="width: 100%;height: 43%;margin-right: 10px;margin-top: 20px;margin-bottom: 0px;margin-left: 10px;border-color: var(--bs-emphasis-color);border-radius: 10px;" />
-                </div>
-            </div>
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width: 100%;margin-top: 0;margin-right: 0;margin-left: 0;text-align: center;">
-                <div class="col" style="width: 49%;">
-                    <div class="row" style="width: 100%;">
-                        <div class="col"><button id="cancel-post-create-btn" tabindex="10" class="btn btn-primary justify-content-center align-items-center" type="button" style="margin: 0;margin-left: 5px;width: 100%;font-family: bnazanb;overflow: auto;position: static;display: block;padding: 0;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;height: 40px;text-align: center;background: var(--bs-form-invalid-border-color);border-style: none;border-radius: 12px;">انصراف</button></div>
-                        <div class="col"><button class="btn btn-primary" type="submit" tabindex="9" style="transform-origin: center;transition: ease;font-family: bnazanb;overflow: auto;position: static;display: block;text-align: center;background: var(--bs-success);border-style: none;padding: 0;padding-left: 0;padding-bottom: 0;padding-right: 0;padding-top: 0;margin: 0;margin-left: 5px;height: 40px;width: 100%;border-radius: 12px;">ایجاد</button></div>
-                    </div>
-                </div>
-            </div>
-        </form> 
-
-
-
-
-
-        <div id="massage-box" class="alert alert-success text-end" role="alert" style="position: fixed;display: none;top: 90%;left: 68%;z-index: 101;width: 30%;margin: 0px;margin-right: 20px;border-radius: 15px;height: 50px;padding-bottom: 20px;background: var(--bs-green);box-shadow: 0px 0px 5px 2px var(--bs-green);border-style: none;">
-            <h5 class="d-xl-flex justify-content-xl-start align-items-xl-center" style="direction: rtl;text-align: right;font-family: bnazanb;width: 100%;height: 100%;color: rgb(255,255,255);padding-bottom: 0;margin-bottom: 0;"></h5>
-        </div>
-
-
-
-        <div id="image-preview" class="container" style="top: 15%;left: 5%;z-index: 110;width: 90%;height: 80%;padding: 0;padding-top: 0;padding-bottom: 0;position: fixed;max-width: none;display: none;">
-            <div class="row gy-4 row-cols-1 row-cols-md-2" style="width:100%;height:100%;">
-                <div class="col" style="width:100%;height:100%;" >
-                    <button id="img-close-btn" class="btn-close" type="button" aria-label="Close" ></button>
-                    <div style="width:100%;height:100%;background-color: #adadad;"><img id="image-to-show" style="object-fit: contain;width:100%;height:100%;"  /></div>
-                </div>
-            </div>
-        </div>
-
+        
     </main>
+
+    <div id="loading-page" class=" justify-content-xxl-center align-items-xxl-center loading-icon" style="display:none;top: 10%;left: 0%;width: 100%;height: 100%;background: #eeeeee;position: fixed;opacity: 0.50;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i></div>
 </body>
 
 </html>

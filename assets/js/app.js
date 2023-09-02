@@ -3,9 +3,14 @@ const baseUrl = 'http://127.0.0.1:8000/'
 const tokenObtainPairViewUrl = baseUrl + 'api/token/'
 const tokenRefreshViewUrl = baseUrl + 'api/token/refresh/'
 const checkTokenViewUrl = baseUrl + 'api/user/checktoken/'
+
 const assessmentsListCreateViewUrl = baseUrl + 'api/contracts/'
+const contractRetrieveUrl = baseUrl + 'api/contracts/'
 const searchAssessmentUrl = assessmentsListCreateViewUrl
-const managePhotoUrl = baseUrl + 'api/contracts/photo/'
+
+const manageContractPhotoUrl = baseUrl + 'api/contracts/contract-photo/'
+
+
 const getUsernameUrl = baseUrl + 'api/user/getusername/'
 const changeUsernameUrl = baseUrl + 'api/user/changeusername/'
 const changeUsernameAndPasswordUrl = baseUrl + 'api/user/changeuserpass/'
