@@ -9,6 +9,9 @@ const contractRetrieveUrl = baseUrl + 'api/contracts/'
 const searchAssessmentUrl = assessmentsListCreateViewUrl
 
 const manageContractPhotoUrl = baseUrl + 'api/contracts/contract-photo/'
+const manageSupplementDocsUrl = baseUrl + 'api/contracts/supplement/'
+const managePhaseOneDocsUrl = baseUrl + 'api/contracts/phase-one/'
+
 
 
 const getUsernameUrl = baseUrl + 'api/user/getusername/'
@@ -95,6 +98,7 @@ async function fetcphoto(Token,url,method) {
     return the_response 
 
 }
+
 
 
 async function fetchDelete(Token,url,method) {

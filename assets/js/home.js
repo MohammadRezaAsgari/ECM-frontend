@@ -1,31 +1,59 @@
+// templates to show when needed
 const post_template = document.getElementById('POST_TEMPLATE').innerHTML
+const search_header_template = document.getElementById('search_header_template').innerHTML
+
+//massage to show when no posts available
 const no_content_massage = document.getElementById('no-content-massage')
+
+//for disabling scroll of page while in another panel
+const body = document.querySelector('body')
+const edit_forms_div = document.getElementById('edit-forms-div')
+
+//for check if delete btn for a post is clicked and handle it
 const card_container_for_delete = document.getElementById('card-container')
-const logOutBtn = document.getElementById('logout-btn')
 const mainTag = document.querySelector('main')
+const logOutBtn = document.getElementById('logout-btn')
 
 
-
+//
 const cancel_post_edit_btn = document.querySelectorAll('.manage_panel_close_btn')
 const cancel_post_create_btn = document.getElementById('cancel-post-create-btn')
 const newPostForm = document.getElementById('create-new-post-panel')
+
+
+//
 const search_form = document.getElementById('search-form')
 const  search_text = document.getElementById('search-text')
-const search_header_template = document.getElementById('search_header_template').innerHTML
+
+//
+//image preview panels
+const img_preview_panels = document.querySelectorAll('.image-preview')
+
+const img_preview_btns = document.querySelectorAll('.preview-btn')
+
+const img_close_btn = document.querySelectorAll('.btn-close')
 
 
-const img_preview = document.getElementById('image-preview')
-const img_close_btn = document.getElementById('img-close-btn')
-const image_to_show = document.getElementById('image-to-show')
+
+//check if certificate_renewal_selector is selected yes to enable its description
 const certificate_renewal_selector = document.getElementById('certificate_renewal_selector')
 
-const img_preview_btn = document.querySelectorAll('#existing-image-preview-btn')
-
+//get the token from cookie to send authentication with requests
 let token = readCookie('token')
+
+//see which post is selected now
 let selected_post_id;
+
+//image preview needs an url
+let contract_image_url = ''
+let phase_one_image_url = ''
+let phase_twoimage_url = ''
+let supplement_image_url = ''
 let image_url = ''
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//fetching posts at startup
 FETCH_POSTS()
 function FETCH_POSTS(){
     response = fetchUrl(token,assessmentsListCreateViewUrl,"GET")
@@ -46,57 +74,28 @@ function FETCH_POSTS(){
     
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//listener for preview btns
+// img_preview_btns.forEach((item) => {
+//     item.addEventListener('click', previewImage)
+// })
+function previewImageBtnHandler(id){
+    img_preview_panels[id].style.display = 'block'
+}
 
 
-function postManageBtnHandler(event) {
-    const isButton = event.target.nodeName === 'BUTTON'
-    if (!isButton || 
-        event.target.id==='add-post-btn' ||
-        event.target.classList.contains('post-delete') || 
-        event.target.classList.contains('return') ) {
-      return
-    }
-  
-    selected_post_id = event.target.id
-    
-    response = fetchUrl(token,assessmentsListCreateViewUrl+`${selected_post_id}`,"GET")
-    response.then(result=>{
+img_close_btn.forEach((item) => {
+    item.addEventListener('click', img_close)
+})
+function img_close (e){
+    e.preventDefault()
+    img_preview_panels[0].style.display = 'none'
+    img_preview_panels[1].style.display = 'none'
+    img_preview_panels[2].style.display = 'none'
+    img_preview_panels[3].style.display = 'none'
+}
 
-    toggleWindowOpacity('0.4',true)
-    disableScroll()
-
-    document.getElementById('organization-name-details').value =  result.company_name
-    document.getElementById('product-name-details').value =  result.product_name
-    document.getElementById('date-details').value =  result.date_of_contract
-    
-
-    arr = result.contract_number.split('/')
-
-    document.getElementById('contract_number_details1').value =  arr[3]
-    document.getElementById('contract_number_details2').value =  arr[2]
-    document.getElementById('contract_number_details3').value =  arr[0]
-    document.getElementById('contract_number_details4').value =  arr[1]
-
-    response2 = fetcphoto(token,managePhotoUrl+`${selected_post_id}`,"GET")
-    response2.then( res=>{
-        if(res.type==='image/jpeg'){
-            const imageUrl = URL.createObjectURL(res)
-            img_download_btn.href =  imageUrl
-            img_download_btn.style.display = 'flex'
-            img_preview_btn.style.display = 'flex'
-            image_url = imageUrl
-        }
-    }
-    ).catch(err =>  {
-        console.log(`${err} : خطایی رخ داده`) 
-    })
-    
-    managePostWindows.style.display = 'block'
-    }).catch(err =>  {
-        console.log(`${err} : خطایی رخ داده`) 
-    })
-  }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
 // post delete Btn Handler
 card_container_for_delete.addEventListener('click', postDeleteBtnHandler)
 function postDeleteBtnHandler(event) {
@@ -122,7 +121,8 @@ function postDeleteBtnHandler(event) {
   }
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//
 function addPostBtnHandler(){
     toggleWindowOpacity('0.4',true)
     newPostForm.style.display = 'block'
@@ -130,8 +130,8 @@ function addPostBtnHandler(){
 }
 
 
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//
 function newPostHanlder(event){
     event.preventDefault()
     form = event.target
@@ -187,7 +187,8 @@ function newPostHanlder(event){
     
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//
 function updatePostHandler(event){
     event.preventDefault()
     form = event.target
@@ -237,7 +238,8 @@ function updatePostHandler(event){
 }
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//
 search_form.addEventListener('submit',searchHandler)
 function searchHandler(e){
     e.preventDefault()
@@ -291,14 +293,6 @@ function searchHandler(e){
 
 
 
-
-
-
-
-
-
-
-
 // cancel_post_create_btn.addEventListener('click', (e)=>{
 //     e.preventDefault()
 //     toggleWindowOpacity('1',false)
@@ -313,23 +307,8 @@ function searchHandler(e){
 
 
 
-
-
-img_preview_btn.forEach((item) => {
-    item.addEventListener('click', previewImage)
-})
-function previewImage(e){
-    e.preventDefault()
-    image_to_show.src = `${image_url}`
-    img_preview.style.display = 'block'
-}
-
-img_close_btn.addEventListener('click', (e)=>{
-    e.preventDefault()
-    img_preview.style.display = 'none'
-})
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//
 certificate_renewal_selector.addEventListener('change',(e)=>{
     if (certificate_renewal_selector.value == 'yes')
         document.getElementById('certificate_renewal_description').disabled = false
@@ -338,6 +317,8 @@ certificate_renewal_selector.addEventListener('change',(e)=>{
     })
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//
 document.getElementById('close_post_edit_panel').addEventListener('click',close_post_edit)
 cancel_post_edit_btn.forEach((item) => {
     item.addEventListener('click', close_post_edit)
@@ -352,24 +333,28 @@ function close_post_edit(e){
     // img_preview_btn.style.display  = 'none'
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//
 logOutBtn.addEventListener('click', (e)=> {
     eraseCookie('token')
     window.location.href = "index"
 })
 
-function disableScroll(e) {
-    TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    LeftScroll = window.pageXOffset || document.documentElement.scrollLeft,
 
-    // if scroll happens, set it to the previous value
-    window.onscroll = function() {
-    window.scrollTo(LeftScroll, TopScroll);
-            };
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//not working yet
+function disableScroll(e) {
+    body.style.overflow = 'hidden'
+    edit_forms_div.style.overflow = 'auto'
  }
 function enableScroll(e) {
-    window.onscroll = function() {};
+    body.style.overflow = 'auto'
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//
 function toggleWindowOpacity(opac,disabled){
     page = document.querySelectorAll('.home')
     home_btns = document.querySelectorAll('.home button')

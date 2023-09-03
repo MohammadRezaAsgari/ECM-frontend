@@ -11,20 +11,14 @@ const card_container = document.getElementById('card-container')
 card_container.addEventListener('click',postManageBtnHandler)
 
 //not available massagess
-const contract_first_page_photo_notavailable_msg = document.getElementById('contract_first_page_photo_notavailable_msg')
-const first_phase_documents_notavailable_msg = document.getElementById('first_phase_documents_notavailable_msg')
-const first_phase_receipt_photo_notavailable_msg = document.getElementById('first_phase_receipt_photo_notavailable_msg')
-const second_phase_receipt_photo_notavailable_msg = document.getElementById('second_phase_receipt_photo_notavailable_msg')
-const second_phase_vulnerability_document_notavailable_msg = document.getElementById('second_phase_vulnerability_document_notavailable_msg')
-const second_phase_functional_document_notavailable_msg = document.getElementById('second_phase_functional_document_notavailable_msg')
-const supplement_receipt_photo_notavailable_msg = document.getElementById('supplement_receipt_photo_notavailable_msg')
-
-//preview btns
-const contract_first_page_photo_preview_btn = document.getElementById('contract_first_page_photo_preview_btn')
+const notavailable_msgs = document.querySelectorAll('.notavailable-msg')
 
 //download btns
-const contract_first_page_photo_download_btn = document.getElementById('contract_first_page_photo_download_btn')
+const download_btns = document.querySelectorAll('.download-btn')
 
+const images_to_show = document.querySelectorAll('#image-to-show')
+
+//retreive a post details and show them to user, also geting files related to this post
 function postManageBtnHandler(event) {
     const isButton = event.target.nodeName === 'BUTTON'
     if (!isButton || 
@@ -46,7 +40,6 @@ function postManageBtnHandler(event) {
     
     response = fetchUrl(token,contractRetrieveUrl+`${selected_post_id}`,"GET")
     response.then(result=>{
-        console.log(result)
 
         contract_details_form_fields.product_name.value = result.product_name
         contract_details_form_fields.organ_name.value = result.company_name
@@ -89,31 +82,180 @@ function postManageBtnHandler(event) {
 
 
 
-        //phase_one_form_fields.first_phase_documents = 
-        //phase_one_form_fields.first_phase_receipt_photo = 
-
-        // phase_two_form_fields.second_phase_receipt_photo = 
-        // phase_two_form_fields.second_phase_vulnerability_document = 
-        // phase_two_form_fields.second_phase_functional_document = 
-
-        //supplement_form_fields.supplement_receipt_photo = 
 
 
+
+        //handling contract first page photo
         response2 = fetcphoto(token,manageContractPhotoUrl+`${selected_post_id}`,"GET")
         response2.then( res=>{
             if(res.type==='image/jpeg'){
                 const imageUrl = URL.createObjectURL(res)
-                contract_first_page_photo_download_btn.href =  imageUrl
-                contract_first_page_photo_download_btn.style.display = 'flex'
-                contract_first_page_photo_preview_btn.style.display = 'flex'
-                image_url = imageUrl
+                download_btns[0].href =  imageUrl
+                download_btns[0].style.display = 'flex'
+                img_preview_btns[0].style.display = 'flex'
+                images_to_show[0].src = imageUrl
             }
             else
-                contract_first_page_photo_notavailable_msg.style.display = 'block'
+                notavailable_msgs[0].style.display = 'block'
         }
         ).catch(err =>  {
             console.log(`${err} : خطایی رخ داده`) 
         })
+
+        
+/////////////not complete
+        //handling first phase documents
+        response4 = fetcphoto(token,managePhaseOneDocsUrl+`${selected_post_id}`,"GET")
+        response4.then( res=>{
+            if(res.type==='application/x-zip-compressed'){
+                // const fileUrl = URL.createObjectURL(res)
+                // download_btns[2].href =  imageUrl
+                // download_btns[2].style.display = 'flex'
+                var myzp = new JSZip();
+                myzp.loadAsync(res).then(function(zip) {
+                    zip.file("receipt.png").async("blob").then((file)=> {
+                        test = URL.createObjectURL(file)
+                        download_btns[1].href =  test
+                        download_btns[1].style.display = 'flex'
+                    })
+
+                    zip.file("TRP.docx").async("blob").then((file)=> {
+                            test = URL.createObjectURL(file)
+                            download_btns[2].href =  test
+                            download_btns[2].style.display = 'flex'
+                        })
+                        
+
+                    // Read from the zip file!
+                   // read_zip.file("hello.txt").async("string"); // a promise of "Hello World\n"
+                });
+            }
+            else
+                notavailable_msgs[2].style.display = 'block'
+        }
+        ).catch(err =>  {
+            console.log(`${err} : خطایی رخ داده`) 
+        })
+
+
+
+
+
+
+
+        // //handling first phase receipt photo
+        // response3 = fetcphoto(token,getPhaseOneReceiptPhotoUrl+`${selected_post_id}`,"GET")
+        // response3.then( res=>{
+        //     if(res.type==='image/jpeg'){
+        //         const imageUrl = URL.createObjectURL(res)
+        //         download_btns[1].href =  imageUrl
+        //         download_btns[1].style.display = 'flex'
+        //         img_preview_btns[1].style.display = 'flex'
+        //         images_to_show[1].src = imageUrl
+        //     }
+        //     else
+        //         notavailable_msgs[1].style.display = 'block'
+        // }
+        // ).catch(err =>  {
+        //     console.log(`${err} : خطایی رخ داده`) 
+        // })
+
+
+        
+        // //handling first phase documents
+        // response4 = fetcphoto(token,getPhaseOneDocumentsUrl+`${selected_post_id}`,"GET")
+        // response4.then( res=>{
+        //     if(res.type==='application/x-zip-compressed'){
+        //         const imageUrl = URL.createObjectURL(res)
+        //         download_btns[2].href =  imageUrl
+        //         download_btns[2].style.display = 'flex'
+        //     }
+        //     else
+        //         notavailable_msgs[2].style.display = 'block'
+        // }
+        // ).catch(err =>  {
+        //     console.log(`${err} : خطایی رخ داده`) 
+        // })
+
+
+
+        // //handling second phase receipt photo
+        // response5 = fetcphoto(token,getPhaseTwoReceiptPhotoUrl+`${selected_post_id}`,"GET")
+        // response5.then( res=>{
+        //     if(res.type==='image/jpeg'){
+        //         const imageUrl = URL.createObjectURL(res)
+        //         download_btns[3].href =  imageUrl
+        //         download_btns[3].style.display = 'flex'
+        //         img_preview_btns[2].style.display = 'flex'
+        //         images_to_show[2].src = imageUrl
+        //     }
+        //     else
+        //         notavailable_msgs[3].style.display = 'block'
+        // }
+        // ).catch(err =>  {
+        //     console.log(`${err} : خطایی رخ داده`) 
+        // })
+
+
+
+        
+
+
+        // //supplement_form_fields.supplement_receipt_photo = 
+
+        // //handling second phase vulnerability document
+        // response6 = fetcphoto(token,getPhaseTwoVulDocumentsUrl+`${selected_post_id}`,"GET")
+        // response6.then( res=>{
+        //     if(res.type==='application/x-zip-compressed'){
+        //         const imageUrl = URL.createObjectURL(res)
+        //         download_btns[4].href =  imageUrl
+        //         download_btns[4].style.display = 'flex'
+        //     }
+        //     else
+        //         notavailable_msgs[4].style.display = 'block'
+        // }
+        // ).catch(err =>  {
+        //     console.log(`${err} : خطایی رخ داده`) 
+        // })
+
+
+        // //handling second phase functional document
+        // response7 = fetcphoto(token,getPhaseTwoFuncDocumentsUrl+`${selected_post_id}`,"GET")
+        // response7.then( res=>{
+        //     if(res.type==='application/x-zip-compressed'){
+        //         const imageUrl = URL.createObjectURL(res)
+        //         download_btns[5].href =  imageUrl
+        //         download_btns[5].style.display = 'flex'
+        //     }
+        //     else
+        //         notavailable_msgs[5].style.display = 'block'
+        // }
+        // ).catch(err =>  {
+        //     console.log(`${err} : خطایی رخ داده`) 
+        // })       
+
+
+
+
+        // //handling suppliment phase receipt photo
+        // response5 = fetcphoto(token,manageSupplementFilesUrl+`${selected_post_id}`,"GET")
+        // response5.then( res=>{
+        //     if(res.type==='image/jpeg'){
+        //         const imageUrl = URL.createObjectURL(res)
+        //         download_btns[6].href =  imageUrl
+        //         download_btns[6].style.display = 'flex'
+        //         img_preview_btns[3].style.display = 'flex'
+        //         images_to_show[3].src = imageUrl
+        //     }
+        //     else
+        //         notavailable_msgs[6].style.display = 'block'
+        // }
+        // ).catch(err =>  {
+        //     console.log(`${err} : خطایی رخ داده`) 
+        // })
+
+
+
 
 
     toggleWindowOpacity('0.4',true)
