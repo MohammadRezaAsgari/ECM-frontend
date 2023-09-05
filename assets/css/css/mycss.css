@@ -21,3 +21,26 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+
+  .customFileInput::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .customFileInputZip::before {
+    content: 'فرمت فایل : zip';
+    opacity: 0.7;
+  }
+  .customFileInputJpg::before {
+    content: 'فرمت فایل : jpeg';
+    opacity: 0.7;
+  }
+  .customFileInputDoc::before {
+    content: 'فرمت فایل : docx';
+    opacity: 0.7;
+  }
+
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

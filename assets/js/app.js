@@ -11,6 +11,7 @@ const searchAssessmentUrl = assessmentsListCreateViewUrl
 const manageContractPhotoUrl = baseUrl + 'api/contracts/contract-photo/'
 const manageSupplementDocsUrl = baseUrl + 'api/contracts/supplement/'
 const managePhaseOneDocsUrl = baseUrl + 'api/contracts/phase-one/'
+const managePhaseTwoDocsUrl = baseUrl + 'api/contracts/phase-two/'
 
 
 
@@ -84,7 +85,7 @@ async function fetchUrl(Token,url,method) {
 
 
 
-async function fetcphoto(Token,url,method) {
+async function fetcfile(Token,url,method) {
   const headers = {
     'Authorization': `Bearer ${Token}`,
     'Content-Type': 'application/json; charset=UTF-8',
@@ -132,13 +133,12 @@ async function fetchDelete(Token,url,method) {
   }
 
 
-  async function postPhoto(body, method, url) {
+  async function postfile(body, method, url) {
     Token = readCookie('token')
     const response = await fetch(url, {
-      method: method, 
+      method: method,
        headers: {
             'Authorization': `Bearer ${Token}`,
-            //'Content-Type': 'multipart/form-data; boundary=something',
       },
       body: body, 
     }).then( response=> response)

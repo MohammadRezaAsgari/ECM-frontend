@@ -37,6 +37,7 @@ const img_close_btn = document.querySelectorAll('.btn-close')
 
 //check if certificate_renewal_selector is selected yes to enable its description
 const certificate_renewal_selector = document.getElementById('certificate_renewal_selector')
+const certificate_renewal_selector1 = document.getElementById('certificate_renewal_selector-1')
 
 //get the token from cookie to send authentication with requests
 let token = readCookie('token')
@@ -76,13 +77,9 @@ function FETCH_POSTS(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //listener for preview btns
-// img_preview_btns.forEach((item) => {
-//     item.addEventListener('click', previewImage)
-// })
 function previewImageBtnHandler(id){
     img_preview_panels[id].style.display = 'block'
 }
-
 
 img_close_btn.forEach((item) => {
     item.addEventListener('click', img_close)
@@ -122,124 +119,15 @@ function postDeleteBtnHandler(event) {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-//
+//new post btn handler
 function addPostBtnHandler(){
     toggleWindowOpacity('0.4',true)
     newPostForm.style.display = 'block'
     disableScroll()
 }
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////
-//
-function newPostHanlder(event){
-    event.preventDefault()
-    form = event.target
-    formFields = form.elements
-
-    
-    
-    
-    
-    const body = {
-        company_name: formFields.organ_name.value,
-        product_name: formFields.product_name.value,
-        date_of_contract: formFields.date.value,
-        contract_number: formFields.contract_number_details3.value + '/' +
-                        formFields.contract_number_details4.value + '/' +
-                        formFields.contract_number_details2.value + '/'+
-                        formFields.contract_number_details1.value 
-    }
-    
-
-    response =  postData(body,"POST",assessmentsListCreateViewUrl )
-    response.then(async res => {
-        if(Object.keys(res).length===1){
-            msg = `${res[Object.keys(res)[0]]}`.replace('contract','قرارداد','contract number','شماره پرونده')
-            msg = msg.replace('contract number','شماره پرونده')
-            msg = msg.replace('product_name','نام سامانه')
-            msg = msg.replace('company_name', 'نام سازمان')
-            msg = msg.replace(',', ' و' )
-
-            myAlert(msg,false)
-            return
-        }
-        
-        const formData = new FormData()
-        formData.append( 'photo', formFields.photo_details.files[0] )
-        formData.append( 'post_id', res.id )
-        response2 = await postPhoto(formData,"POST",managePhotoUrl )
-        
-
-        myAlert('قرارداد با موفقیت اضافه شد.',true)
-        setTimeout(function() {
-            toggleWindowOpacity('1',false)
-            newPostForm.style.display = 'none'
-            location.reload()
-        }, 1000)
-
-
-      }
-      ).catch(err=> console.log(`${err} : خطایی رخ داده`) )
-    
-    
-    
-    
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-//
-function updatePostHandler(event){
-    event.preventDefault()
-    form = event.target
-    formFields = form.elements
-
-    const body = {
-        company_name: formFields.organ_name.value,
-        product_name: formFields.product_name.value,
-        date_of_contract: formFields.date.value,
-        contract_number: formFields.contract_number_details3.value + '/' +
-                        formFields.contract_number_details4.value + '/' +
-                        formFields.contract_number_details2.value + '/'+
-                        formFields.contract_number_details1.value 
-    }
-    response = postData(body,"PUT",assessmentsListCreateViewUrl+`${selected_post_id}`)
-    response.then(async res => {
-        
-
-        if(Object.keys(res).length===1){
-
-            msg = `${res[Object.keys(res)[0]]}`.replace('contract','قرارداد','contract number','شماره پرونده')
-            msg = msg.replace('contract number','شماره پرونده')
-            msg = msg.replace('product_name','نام سامانه')
-            msg = msg.replace('company_name', 'نام سازمان')
-            msg = msg.replace(',', ' و' )
-
-            myAlert(msg,false)
-            return
-        }
-        
-        if(!!formFields.photo_details.files[0]){
-            const formData = new FormData()
-            formData.append( 'photo', formFields.photo_details.files[0] )
-            
-            response2 = await postPhoto(formData,"PUT",managePhotoUrl+ `${selected_post_id}`)
-        }
-
-        myAlert('قرارداد با موفقیت ویرایش شد.',true)
-        setTimeout(function() {
-            toggleWindowOpacity('1',false)
-            newPostForm.style.display = 'none'
-            location.reload()
-        }, 1000)
-
-      }
-      ).catch(err=> console.log(`${err} : خطایی رخ داده`) )
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-//
+//search handler
 search_form.addEventListener('submit',searchHandler)
 function searchHandler(e){
     e.preventDefault()
@@ -290,40 +178,29 @@ function searchHandler(e){
         
         })
 }
-
-
-
-// cancel_post_create_btn.addEventListener('click', (e)=>{
-//     e.preventDefault()
-//     toggleWindowOpacity('1',false)
-//     enableScroll()
-//     newPostForm.style.display = 'none'
-// })
-
-
-//newPostForm.addEventListener('submit', newPostHanlder)
-
-//managePostWindows.addEventListener('submit', updatePostHandler)
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////
-//
+// if the selector is on 'yes' option, so u can write description for it
 certificate_renewal_selector.addEventListener('change',(e)=>{
     if (certificate_renewal_selector.value == 'yes')
         document.getElementById('certificate_renewal_description').disabled = false
     else
         document.getElementById('certificate_renewal_description').disabled = true
     })
-
-
+certificate_renewal_selector1.addEventListener('change',(e)=>{
+    if (certificate_renewal_selector1.value == 'yes')
+        document.getElementById('certificate_renewal_description-1').disabled = false
+    else
+        document.getElementById('certificate_renewal_description-1').disabled = true
+    })
 /////////////////////////////////////////////////////////////////////////////////////////////////
-//
-document.getElementById('close_post_edit_panel').addEventListener('click',close_post_edit)
+document.getElementById('cancel-post-edit-btn').addEventListener('click',close)
+document.getElementById('close_post_edit_panel').addEventListener('click',close)
+document.getElementById('close_post_create_panel').addEventListener('click',close)
+cancel_post_create_btn.addEventListener('click',close)
 cancel_post_edit_btn.forEach((item) => {
-    item.addEventListener('click', close_post_edit)
+    item.addEventListener('click', close)
 })
-function close_post_edit(e){
+function close(e){
     location.reload()
     // e.preventDefault()
     // toggleWindowOpacity('1',false)
@@ -332,18 +209,12 @@ function close_post_edit(e){
     // img_download_btn.style.display  = 'none'
     // img_preview_btn.style.display  = 'none'
 }
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////
-//
 logOutBtn.addEventListener('click', (e)=> {
     eraseCookie('token')
     window.location.href = "index"
 })
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-//not working yet
+/////////////////////////////////////////////////////////////////////////////////////////////////\
 function disableScroll(e) {
     body.style.overflow = 'hidden'
     edit_forms_div.style.overflow = 'auto'
@@ -351,8 +222,6 @@ function disableScroll(e) {
 function enableScroll(e) {
     body.style.overflow = 'auto'
 }
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //
 function toggleWindowOpacity(opac,disabled){
