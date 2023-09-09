@@ -1,3 +1,5 @@
+
+easyNumberSeparator('number-separator')
 function easyNumberSeparator(config) {
   // Currency Separator
   let commaCounter = 10;
@@ -60,9 +62,9 @@ function easyNumberSeparator(config) {
   listenFields()
 
   // Fire separator when every element append to page
-  document.addEventListener("DOMNodeInserted", function (e) {
-    if ((e.target).classList.contains(obj.selector.replace('.', ''))) {
-      listenFields()
-    }
-  });
+  // document.addEventListener("DOMNodeInserted", function (e) {
+  //   if ((e.target).classList.contains(obj.selector.replace('.', ''))) {
+  //     listenFields()
+  //   }
+  // });
 }

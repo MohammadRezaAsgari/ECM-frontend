@@ -265,7 +265,7 @@ function postManageBtnHandler(e) {
 
 
                 try{
-                    zip.file("func_report.docx").async("blob").then((file)=> {
+                    zip.file("vul_report.docx").async("blob").then((file)=> {
                             test = URL.createObjectURL(file)
                             download_btns[13].href =  test
                             download_btns[13].style.display = 'flex'
@@ -276,7 +276,7 @@ function postManageBtnHandler(e) {
 
 
                 try{
-                    zip.file("vul_report.docx").async("blob").then((file)=> {
+                    zip.file("func_report.docx").async("blob").then((file)=> {
                             test = URL.createObjectURL(file)
                             download_btns[14].href =  test
                             download_btns[14].style.display = 'flex'
@@ -391,8 +391,7 @@ function ContractEditHandler(event){
         if (formFields.contract_first_page_photo.files[0]){
             var formData = new FormData()
             formData.append( 'photo', formFields.contract_first_page_photo.files[0], `${res.product_name}_contract_firtspage_photo.jpeg` )
-            formData.append( 'post_id', res.id )
-            response2 = await postfile(formData,"PUT",manageContractPhotoUrl )
+            await postfile(formData,"PUT",manageContractPhotoUrl+`${selected_post_id}` )
         }
 
         //sending phase one files if they exist
@@ -410,56 +409,110 @@ function ContractEditHandler(event){
             formFields.other_documents.files[0]
         ){
             zip_response = fetcfile(token,managePhaseOneDocsUrl+`${selected_post_id}`,"GET")
-            zip_response.then( (res2)=>{
-                    //get the zip file from request and open its contents
-                var zp = new JSZip()
-                zp.loadAsync(res2).then(async (myzip) =>{
+            zip_response.then( async(res2)=>{
+                //if there is nothing in it already
+                if(res2.type=='application/json'){
+                    var newzp = new JSZip()
                     if (formFields.first_phase_receipt_photo.files[0])
-                        myzip.file('p1_rec.jpeg',formFields.first_phase_receipt_photo.files[0] )
+                        newzp.file('p1_rec.jpeg',formFields.first_phase_receipt_photo.files[0] )
                     
                     if (formFields.trp_document.files[0])
-                        myzip.file('trp.docx',formFields.trp_document.files[0] )
+                        newzp.file('trp.docx',formFields.trp_document.files[0] )
 
                     if (formFields.vtr_document.files[0])
-                        myzip.file('vtr.docx',formFields.vtr_document.files[0] )
+                        newzp.file('vtr.docx',formFields.vtr_document.files[0] )
 
                     if (formFields.other_reports.files[0])
-                        myzip.file('other_reports.zip',formFields.other_reports.files[0] )
+                        newzp.file('other_reports.zip',formFields.other_reports.files[0] )
 
                     if (formFields.st_document.files[0])
-                        myzip.file('st.docx',formFields.st_document.files[0] )
+                        newzp.file('st.docx',formFields.st_document.files[0] )
                     
                     if (formFields.adv_document.files[0])
-                        myzip.file('adv.docx',formFields.adv_document.files[0] )
+                        newzp.file('adv.docx',formFields.adv_document.files[0] )
 
                     if (formFields.agd_document.files[0])
-                        myzip.file('agd.docx',formFields.agd_document.files[0] )
+                        newzp.file('agd.docx',formFields.agd_document.files[0] )
                     
                     if (formFields.alc_document.files[0])
-                        myzip.file('alc.docx',formFields.alc_document.files[0] )
+                        newzp.file('alc.docx',formFields.alc_document.files[0] )
 
                     if (formFields.product_info_document.files[0])
-                        myzip.file('presentation.docx',formFields.product_info_document.files[0] )
+                        newzp.file('presentation.docx',formFields.product_info_document.files[0] )
                     
                     if (formFields.catalog_document.files[0])
-                        myzip.file('catalog.docx',formFields.catalog_document.files[0] )
+                        newzp.file('catalog.docx',formFields.catalog_document.files[0] )
 
                     if (formFields.other_documents.files[0])
-                        myzip.file('other_docs.zip',formFields.other_documents.files[0] )
+                        newzp.file('other_docs.zip',formFields.other_documents.files[0] )
 
 
                     //convert zip object to file object (.zip) and post the request
-                    await myzip.generateAsync({ type: 'blob' }).then(async(blob) => {
+                    await newzp.generateAsync({ type: 'blob' }).then(async(blob) => {
                         newFile = new File([blob], `${res.product_name}_phase_one_docs.zip`, {
                         type: 'application/zip'
                         })
 
                         var formData = new FormData()
                         formData.append( 'documents', newFile )
-                        await postfile(formData,"PUT",managePhaseOneDocsUrl+`${selected_post_id}` )
+                        formData.append( 'post_id', res.id )
+                        await postfile(formData,"POST",managePhaseOneDocsUrl )
                     })
-                })
+                    
+                }
+
+                //else:if there is a file associated with this contract get the zip file from request and open its contents for edit
+                else{
+                    var zp = new JSZip()
+                    zp.loadAsync(res2).then(async (myzip) =>{
+                        if (formFields.first_phase_receipt_photo.files[0])
+                            myzip.file('p1_rec.jpeg',formFields.first_phase_receipt_photo.files[0] )
+                        
+                        if (formFields.trp_document.files[0])
+                            myzip.file('trp.docx',formFields.trp_document.files[0] )
+
+                        if (formFields.vtr_document.files[0])
+                            myzip.file('vtr.docx',formFields.vtr_document.files[0] )
+
+                        if (formFields.other_reports.files[0])
+                            myzip.file('other_reports.zip',formFields.other_reports.files[0] )
+
+                        if (formFields.st_document.files[0])
+                            myzip.file('st.docx',formFields.st_document.files[0] )
+                        
+                        if (formFields.adv_document.files[0])
+                            myzip.file('adv.docx',formFields.adv_document.files[0] )
+
+                        if (formFields.agd_document.files[0])
+                            myzip.file('agd.docx',formFields.agd_document.files[0] )
+                        
+                        if (formFields.alc_document.files[0])
+                            myzip.file('alc.docx',formFields.alc_document.files[0] )
+
+                        if (formFields.product_info_document.files[0])
+                            myzip.file('presentation.docx',formFields.product_info_document.files[0] )
+                        
+                        if (formFields.catalog_document.files[0])
+                            myzip.file('catalog.docx',formFields.catalog_document.files[0] )
+
+                        if (formFields.other_documents.files[0])
+                            myzip.file('other_docs.zip',formFields.other_documents.files[0] )
+
+
+                        //convert zip object to file object (.zip) and post the request
+                        await myzip.generateAsync({ type: 'blob' }).then(async(blob) => {
+                            newFile = new File([blob], `${res.product_name}_phase_one_docs.zip`, {
+                            type: 'application/zip'
+                            })
+
+                            var formData = new FormData()
+                            formData.append( 'documents', newFile )
+                            await postfile(formData,"PUT",managePhaseOneDocsUrl+`${selected_post_id}` )
+                        })
+                    })
+                }
             })
+        
         }
 
         //sending phase two files if they exist
@@ -469,31 +522,59 @@ function ContractEditHandler(event){
             formFields.second_phase_functional_document.files[0] 
         ){
             zip_response = fetcfile(token,managePhaseTwoDocsUrl+`${selected_post_id}`,"GET")
-            zip_response.then( (res2)=>{
-                    //get the zip file from request and open its contents
-                var zp = new JSZip()
-                zp.loadAsync(res2).then(async (myzip) =>{
-
+            zip_response.then( async(res3)=>{
+                //if there is nothing in it already
+                if(res3.type=='application/json'){
+                    var newzp = new JSZip()
                     if (formFields.second_phase_receipt_photo.files[0])
-                        myzip.file('p2_rec.jpeg',formFields.second_phase_receipt_photo.files[0] )
-                    
+                        newzp.file('p2_rec.jpeg',formFields.second_phase_receipt_photo.files[0] )
+
                     if (formFields.second_phase_vulnerability_document.files[0])
-                        myzip.file('func_report.docx',formFields.second_phase_vulnerability_document.files[0])
+                        newzp.file('vul_report.docx',formFields.second_phase_vulnerability_document.files[0])
 
                     if (formFields.second_phase_functional_document.files[0])
-                        myzip.file('vul_report.docx',formFields.second_phase_functional_document.files[0] )
+                        newzp.file('func_report.docx',formFields.second_phase_functional_document.files[0] )
                     
                     //convert zip object to file object (.zip) and post the request
-                    await myzip.generateAsync({ type: 'blob' }).then(async(blob) => {
+                    await newzp.generateAsync({ type: 'blob' }).then(async(blob) => {
                         newFile = new File([blob], `${res.product_name}_phase_two_docs.zip`, {
                         type: 'application/zip'
                         })
 
                         var formData = new FormData()
                         formData.append( 'documents', newFile )
-                        await postfile(formData,"PUT",managePhaseTwoDocsUrl+`${selected_post_id}`)
-                    })
+                        formData.append( 'post_id', res.id )
+                        await postfile(formData,"POST",managePhaseTwoDocsUrl)
                 })
+                }
+
+                //else:if there is a file associated with this contract get the zip file from request and open its contents for edit
+                else{
+                    var zp = new JSZip()
+                    zp.loadAsync(res3).then(async (myzip) =>{
+
+
+                        if (formFields.second_phase_receipt_photo.files[0])
+                            myzip.file('p2_rec.jpeg',formFields.second_phase_receipt_photo.files[0] )
+                        
+                        if (formFields.second_phase_vulnerability_document.files[0])
+                            myzip.file('vul_report.docx',formFields.second_phase_vulnerability_document.files[0])
+
+                        if (formFields.second_phase_functional_document.files[0])
+                            myzip.file('func_report.docx',formFields.second_phase_functional_document.files[0] )
+                        
+                        //convert zip object to file object (.zip) and post the request
+                        await myzip.generateAsync({ type: 'blob' }).then(async(blob) => {
+                            newFile = new File([blob], `${res.product_name}_phase_two_docs.zip`, {
+                            type: 'application/zip'
+                            })
+
+                            var formData = new FormData()
+                            formData.append( 'documents', newFile )
+                            await postfile(formData,"PUT",managePhaseTwoDocsUrl+`${selected_post_id}`)
+                        })
+                    })
+                }
             })
         }
 
@@ -501,8 +582,7 @@ function ContractEditHandler(event){
         if (formFields.supplement_receipt_photo.files[0] ){
             var formData = new FormData()
             formData.append( 'photo', formFields.supplement_receipt_photo.files[0], `${res.product_name}_supplement_receipt_photo.jpeg`  )
-            formData.append( 'post_id', res.id )
-            response5 = await postfile(formData,"PUT",manageSupplementDocsUrl )
+            response5 = await postfile(formData,"PUT",manageSupplementDocsUrl+`${selected_post_id}` )
         }
 
         myAlert('قرارداد با موفقیت ویرایش شد.',true)

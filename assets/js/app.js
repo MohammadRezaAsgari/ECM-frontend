@@ -136,8 +136,8 @@ async function fetchDelete(Token,url,method) {
   async function postfile(body, method, url) {
     Token = readCookie('token')
     const response = await fetch(url, {
-      method: method,
-       headers: {
+      method: method, 
+      headers: {
             'Authorization': `Bearer ${Token}`,
       },
       body: body, 

@@ -5,5 +5,5 @@ response.then( (response) => {
     if (response.access==='OK')
         window.location.href = "home"
 }).catch(error => {
-    alert(`${error} : خطایی رخ داده`) 
+    console.log(`${error} : خطایی رخ داده`) 
 })

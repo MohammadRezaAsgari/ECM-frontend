@@ -60,7 +60,7 @@ function FETCH_POSTS(){
     response = fetchUrl(token,assessmentsListCreateViewUrl,"GET")
     response.then(result=>{
         if (result[0]){
-            for(assessment of result){
+            for(contract of result){
                 card_body =  eval('`'+post_template+'`')
                 card_container.innerHTML += card_body
             }   
@@ -164,7 +164,7 @@ function searchHandler(e){
             card_container.innerHTML = ``
             card_container.innerHTML += search_header_template
             if (result[0]){
-                for(assessment of result){
+                for(contract of result){
                     card_body =  eval('`'+post_template+'`')
                     card_container.innerHTML += card_body
                 }   

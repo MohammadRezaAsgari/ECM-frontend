@@ -141,10 +141,10 @@ function CreatePostHandler(e){
                 myzip.file('p2_rec.jpeg',formFields.second_phase_receipt_photo.files[0] )
             
             if (formFields.second_phase_vulnerability_document.files[0])
-                myzip.file('func_report.docx',formFields.second_phase_vulnerability_document.files[0])
+                myzip.file('vul_report.docx',formFields.second_phase_vulnerability_document.files[0])
 
             if (formFields.second_phase_functional_document.files[0])
-                myzip.file('vul_report.docx',formFields.second_phase_functional_document.files[0] )
+                myzip.file('func_report.docx',formFields.second_phase_functional_document.files[0] )
             
             //convert zip object to file object (.zip) and post the request
             await myzip.generateAsync({ type: 'blob' }).then(async(blob) => {

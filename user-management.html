@@ -1,126 +1,212 @@
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>مدیریت حساب و کاربران</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/bnazanb.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
-    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/css/Login-Form-Basic-icons.css">
-    <link rel="stylesheet" href="assets/css/css/Projects-Grid-images.css">
-    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-1.css">
-    <link rel="stylesheet" href="assets/css/css/mycss.css">
-    <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/dist/jalalidatepicker.min.css" />
-    <script type="text/javascript" src="assets/dist/jalalidatepicker.min.js"></script>
-    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-2.css">
-    <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min-1.css">
-    <link rel="stylesheet" href="assets/fonts/cdnjs.cloudflare.com_ajax_libs_font-awesome_4.7.0_css_font-awesome.min.css">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>مدیریت حساب و کاربران</title>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/bnazanb.css">
+        <link rel="stylesheet" href="assets/css/mycss.css">
+        <link rel="stylesheet" href="assets/fonts/cdnjs.cloudflare.com_ajax_libs_font-awesome_4.7.0_css_font-awesome.min.css">
 
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/authentication.js" ></script>
-    <script src="assets/js/user.js" defer></script>
+        <script src="assets/js/app.js"></script>
+        <script src="assets/js/authentication.js"></script>
+        <script src="assets/js/user.js" defer></script>
 
-</head>
+    </head>
 
-<body>
-    <main>
-        <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light home" id="mainNav" style="margin-bottom:0;background:var(--bs-indigo);border-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;width:100%;padding-top:0;">
-            <div class="container">
-                <div id="navcol-1" class="collapse navbar-collapse" ><button id="logout-btn" class="btn" role="button" style="margin: 10px 10px 10px 10px;"><i class="fa fa-sign-out" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button onclick="window.location.href = `home`" id="home-btn" class="btn" rel role="button" style="color: var(--bs-navbar-active-color);margin: 10px 10px 10px 10px;"><i class="fa fa-home" style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button id="user-mng-btn" class="btn" onclick="location.reload()" role="button" style="background: var(--bs-navbar-disabled-color);;margin: 10px 10px 10px 10px;"><i class="fa fa-male" style="font-size: 36px;color: white;border-radius: 18px;width: 30px;"></i></button></div><span style="font-family:bnazanb;color:rgb(255,255,255);margin-right:10px; font-size:24px;">سامانه مدیریت قرارداد های ارزیابی</span><img src="assets/photos/logo.png" alt="" style="width: 8%;">
-            </div>
-        </nav>
-
-
-
-        <div class="card mx-auto home" id="edit-user-form" style="width:80%;margin:10px;padding:10px;margin-bottom:58px;border-style:none;">
-            
-            <form class="card-header" id="card-container" style="padding-top: 20px;padding-bottom: 20px;padding-right: 20px;padding-left: 20px;background: #ffffff;border-bottom-style: none;">
-                <div class="row">
-                    <div class="col d-xl-flex justify-content-xl-end">
-                        <h1 id="header-text" style="text-align: right;font-family: bnazanb;width: 450px;height: auto;border-bottom-style: solid;border-bottom-color: var(--bs-emphasis-color);padding-bottom: 20px;padding-left: 99px;">ویرایش مشخصات کاربری</h1>
-                    </div>
+    <body>
+        <main>
+            <nav
+                class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light home"
+                id="mainNav"
+                style="margin-bottom:0;background:var(--bs-indigo);border-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;width:100%;padding-top:0;">
+                <div class="container">
+                    <div id="navcol-1" class="collapse navbar-collapse"><button
+                            id="logout-btn" class="btn" role="button"
+                            style="margin: 10px 10px 10px 10px;"><i
+                                class="fa fa-sign-out"
+                                style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button
+                            onclick="window.location.href = `home`"
+                            id="home-btn" class="btn" rel role="button"
+                            style="color: var(--bs-navbar-active-color);margin: 10px 10px 10px 10px;"><i
+                                class="fa fa-home"
+                                style="font-size: 36px;color: white;border-radius: 18px;"></i></button><button
+                            id="user-mng-btn" class="btn"
+                            onclick="location.reload()" role="button"
+                            style="background: var(--bs-navbar-disabled-color);;margin: 10px 10px 10px 10px;"><i
+                                class="fa fa-male"
+                                style="font-size: 36px;color: white;border-radius: 18px;width: 30px;"></i></button></div><span
+                        style="font-family:bnazanb;color:rgb(255,255,255);margin-right:10px; font-size:24px;">سامانه
+                        مدیریت قرارداد های ارزیابی</span><img
+                        src="assets/photos/logo.png" alt style="width: 8%;">
                 </div>
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
-                    <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
-                        <h4 style="text-align:right;font-family:bnazanb;height:20%;"> * نام کاربری</h4><input required type="text" id="user-details-1" dir="rtl" name="user_name" autocomplete="off" placeholder=" نام کاربری " style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;">
-                    </div>
-                </div>
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
-                    <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
-                        <h4 style="text-align:right;font-family:bnazanb;height:20%;">* رمز عبور فعلی</h4><input required type="password" id="user-details-2" dir="rtl" name="current_pass" autocomplete="off" placeholder="رمز عبور فعلی" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;">
-                    </div>
-                    <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
-                        <h4 style="text-align:right;font-family:bnazanb;height:20%;">رمز عبور جدید</h4><input type="password" id="user-details-3" dir="rtl" name="new_pass" autocomplete="off" placeholder="رمز عبور جدید" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;">
-                    </div>
-                    <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
-                        <h4 style="text-align:right;font-family:bnazanb;height:20%;">تکرار رمز عبور جدید</h4><input type="password" id="user-details-4" dir="rtl" name="repeat_new_pass" autocomplete="off" placeholder="تکرار رمز عبور جدید" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;">
-                    </div>
-                </div>
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width:100%;margin-top:0;margin-right:0;margin-left:0;text-align:center;">
-                    <div class="col" style="width:49%;">
-                        <div class="row" style="width:100%;">
-                            <div class="col"><button class="btn btn-primary justify-content-center align-items-center" onclick="window.location.href = `home`" type="button" style="margin:0;margin-left:5px;width:100%;font-family:bnazanb;overflow:auto;position:static;display:block;padding:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;height:40px;text-align:center;background:var(--bs-form-invalid-border-color);border-style:none;border-radius:12px;">انصراف</button></div>
-                            <div class="col"><button class="btn btn-primary" type="submit" style="transform-origin:center;transition:ease;font-family:bnazanb;overflow:auto;position:static;display:block;text-align:center;background:var(--bs-success);border-style:none;padding:0;padding-left:0;padding-bottom:0;padding-right:0;padding-top:0;margin:0;margin-left:5px;height:40px;width:100%;border-radius:12px;">ویرایش</button></div>
+            </nav>
+
+            <div class="card mx-auto home" id="edit-user-form"
+                style="width:80%;margin:10px;padding:10px;margin-bottom:58px;border-style:none;">
+
+                <form class="card-header" id="card-container"
+                    style="padding-top: 20px;padding-bottom: 20px;padding-right: 20px;padding-left: 20px;background: #ffffff;border-bottom-style: none;">
+                    <div class="row">
+                        <div class="col d-xl-flex justify-content-xl-end">
+                            <h1 id="header-text"
+                                style="text-align: right;font-family: bnazanb;width: 450px;height: auto;border-bottom-style: solid;border-bottom-color: var(--bs-emphasis-color);padding-bottom: 20px;padding-left: 99px;">ویرایش
+                                مشخصات کاربری</h1>
                         </div>
                     </div>
-                </div>
-            </form>
-
-
-
-            <form class="card-header" id="create-user-form" style="padding-top: 20px;padding-bottom: 20px;padding-right: 20px;padding-left: 20px;background: #ffffff;border-bottom-style: none;display: none;">
-                <div class="row">
-                    <div class="col d-xl-flex justify-content-xl-end">
-                        <h1 id="header-text-1" style="text-align: right;font-family: bnazanb;width: 450px;height: auto;border-bottom-style: solid;border-bottom-color: var(--bs-emphasis-color);padding-bottom: 20px;padding-left: 99px;">تعریف کاربر جدید</h1>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"
+                        style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                        <div class="col"
+                            style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
+                            <h4
+                                style="text-align:right;font-family:bnazanb;height:20%;">
+                                * نام کاربری</h4><input required type="text"
+                                id="user-details-1" dir="rtl" name="user_name"
+                                autocomplete="off" placeholder=" نام کاربری "
+                                style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;">
+                        </div>
                     </div>
-                </div>
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
-                    <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
-                        <h4 style="text-align:right;font-family:bnazanb;height:20%;">* نام کاربری</h4><input  type="text" id="product-name-details-5" dir="rtl" name="user_name" autocomplete="one-time-code" placeholder="نام کاربری" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;" required="">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"
+                        style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                        <div class="col"
+                            style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
+                            <h4
+                                style="text-align:right;font-family:bnazanb;height:20%;">*
+                                رمز عبور فعلی</h4><input required
+                                type="password" id="user-details-2" dir="rtl"
+                                name="current_pass" autocomplete="off"
+                                placeholder="رمز عبور فعلی"
+                                style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;">
+                        </div>
+                        <div class="col"
+                            style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
+                            <h4
+                                style="text-align:right;font-family:bnazanb;height:20%;">رمز
+                                عبور جدید</h4><input type="password"
+                                id="user-details-3" dir="rtl" name="new_pass"
+                                autocomplete="off" placeholder="رمز عبور جدید"
+                                style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;">
+                        </div>
+                        <div class="col"
+                            style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
+                            <h4
+                                style="text-align:right;font-family:bnazanb;height:20%;">تکرار
+                                رمز عبور جدید</h4><input type="password"
+                                id="user-details-4" dir="rtl"
+                                name="repeat_new_pass" autocomplete="off"
+                                placeholder="تکرار رمز عبور جدید"
+                                style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;">
+                        </div>
                     </div>
-                </div>
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
-                    <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
-                        <h4 style="text-align:right;font-family:bnazanb;height:20%;">* رمز عبور</h4><input  type="password" id="product-name-details-7" dir="rtl" name="pass" autocomplete="one-time-code" placeholder="رمز عبور" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;" required="">
-                    </div>
-                    <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
-                        <h4 style="text-align:right;font-family:bnazanb;height:20%;">* تکرار رمز عبور</h4><input  type="password" id="product-name-details-8" dir="rtl" name="repeat_pass" autocomplete="one-time-code" placeholder="تکرار رمز عبور" style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;" required="">
-                    </div>
-                </div>
-
-
-                <div class="col" style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
-                    <div class="form-check d-xl-flex m-auto justify-content-xl-end"><input id="is_admin" name="is_admin" class="form-check-input my-auto" type="checkbox" style="color: var(--bs-emphasis-color);" /><label class="form-check-label" for="is_admin" style="text-align: right;font-family: bnazanb;font-size: 24px;">  دسترسی ادمین</label></div>
-                </div>
-
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between" style="width:100%;margin-top:0;margin-right:0;margin-left:0;text-align:center;">
-                    <div class="col" style="width:49%;">
-                        <div class="row" style="width:100%;">
-                            <div class="col"><button class="btn btn-primary justify-content-center align-items-center" onclick="window.location.href = `home`" type="button" style="margin:0;margin-left:5px;width:100%;font-family:bnazanb;overflow:auto;position:static;display:block;padding:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;height:40px;text-align:center;background:var(--bs-form-invalid-border-color);border-style:none;border-radius:12px;">انصراف</button></div>
-                            <div class="col"><button class="btn btn-primary" type="submit" style="transform-origin:center;transition:ease;font-family:bnazanb;overflow:auto;position:static;display:block;text-align:center;background:var(--bs-success);border-style:none;padding:0;padding-left:0;padding-bottom:0;padding-right:0;padding-top:0;margin:0;margin-left:5px;height:40px;width:100%;border-radius:12px;">ایجاد</button></div>
+                    <div
+                        class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between"
+                        style="width:100%;margin-top:0;margin-right:0;margin-left:0;text-align:center;">
+                        <div class="col" style="width:49%;">
+                            <div class="row" style="width:100%;">
+                                <div class="col"><button
+                                        class="btn btn-primary justify-content-center align-items-center"
+                                        onclick="window.location.href = `home`"
+                                        type="button"
+                                        style="margin:0;margin-left:5px;width:100%;font-family:bnazanb;overflow:auto;position:static;display:block;padding:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;height:40px;text-align:center;background:var(--bs-form-invalid-border-color);border-style:none;border-radius:12px;">انصراف</button></div>
+                                <div class="col"><button class="btn btn-primary"
+                                        type="submit"
+                                        style="transform-origin:center;transition:ease;font-family:bnazanb;overflow:auto;position:static;display:block;text-align:center;background:var(--bs-success);border-style:none;padding:0;padding-left:0;padding-bottom:0;padding-right:0;padding-top:0;margin:0;margin-left:5px;height:40px;width:100%;border-radius:12px;">ویرایش</button></div>
+                            </div>
                         </div>
                     </div>
                 </form>
-            </div>
 
+                <form class="card-header" id="create-user-form"
+                    style="padding-top: 20px;padding-bottom: 20px;padding-right: 20px;padding-left: 20px;background: #ffffff;border-bottom-style: none;display: none;">
+                    <div class="row">
+                        <div class="col d-xl-flex justify-content-xl-end">
+                            <h1 id="header-text-1"
+                                style="text-align: right;font-family: bnazanb;width: 450px;height: auto;border-bottom-style: solid;border-bottom-color: var(--bs-emphasis-color);padding-bottom: 20px;padding-left: 99px;">تعریف
+                                کاربر جدید</h1>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"
+                        style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                        <div class="col"
+                            style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
+                            <h4
+                                style="text-align:right;font-family:bnazanb;height:20%;">*
+                                نام کاربری</h4><input type="text"
+                                id="product-name-details-5" dir="rtl"
+                                name="user_name" autocomplete="one-time-code"
+                                placeholder="نام کاربری"
+                                style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;"
+                                required>
+                        </div>
+                    </div>
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"
+                        style="width:100%;margin-top:0;margin-right:0;margin-left:0;">
+                        <div class="col"
+                            style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
+                            <h4
+                                style="text-align:right;font-family:bnazanb;height:20%;">*
+                                رمز عبور</h4><input type="password"
+                                id="product-name-details-7" dir="rtl"
+                                name="pass" autocomplete="one-time-code"
+                                placeholder="رمز عبور"
+                                style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;"
+                                required>
+                        </div>
+                        <div class="col"
+                            style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
+                            <h4
+                                style="text-align:right;font-family:bnazanb;height:20%;">*
+                                تکرار رمز عبور</h4><input type="password"
+                                id="product-name-details-8" dir="rtl"
+                                name="repeat_pass" autocomplete="one-time-code"
+                                placeholder="تکرار رمز عبور"
+                                style="margin:0 0px;margin-right:50px;padding-left:0px;padding-right:5px;margin-bottom:10px;margin-top:20px;margin-left:10px;font-family:bnazanb;border-radius:10px;text-align:right;border-width:1px;height:50%;width:100%;display:flex;"
+                                required>
+                        </div>
+                    </div>
 
+                    <div class="col"
+                        style="padding-bottom: 0px;padding-top: 0px;margin-right: 0px;width: 100%;">
+                        <div
+                            class="form-check d-xl-flex m-auto justify-content-xl-end"><input
+                                id="is_admin" name="is_admin"
+                                class="form-check-input my-auto" type="checkbox"
+                                style="color: var(--bs-emphasis-color);" /><label
+                                class="form-check-label" for="is_admin"
+                                style="text-align: right;font-family: bnazanb;font-size: 24px;">
+                                دسترسی ادمین</label></div>
+                    </div>
 
+                    <div
+                        class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-between"
+                        style="width:100%;margin-top:0;margin-right:0;margin-left:0;text-align:center;">
+                        <div class="col" style="width:49%;">
+                            <div class="row" style="width:100%;">
+                                <div class="col"><button
+                                        class="btn btn-primary justify-content-center align-items-center"
+                                        onclick="window.location.href = `home`"
+                                        type="button"
+                                        style="margin:0;margin-left:5px;width:100%;font-family:bnazanb;overflow:auto;position:static;display:block;padding:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;height:40px;text-align:center;background:var(--bs-form-invalid-border-color);border-style:none;border-radius:12px;">انصراف</button></div>
+                                <div class="col"><button class="btn btn-primary"
+                                        type="submit"
+                                        style="transform-origin:center;transition:ease;font-family:bnazanb;overflow:auto;position:static;display:block;text-align:center;background:var(--bs-success);border-style:none;padding:0;padding-left:0;padding-bottom:0;padding-right:0;padding-top:0;margin:0;margin-left:5px;height:40px;width:100%;border-radius:12px;">ایجاد</button></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
+                <div id="massage-box" class="alert alert-success text-end"
+                    role="alert"
+                    style="position:fixed;display: none;top: 90%;left: 68%;z-index: 101;width: 30%;margin: 0px;margin-right: 20px;border-radius: 15px;height: 50px;padding-bottom: 20px;background: var(--bs-green);box-shadow: 0px 0px 5px 2px var(--bs-green);border-style: none;">
+                    <h5
+                        class="d-flex justify-content-xl-end align-items-xl-center"
+                        style="text-align: right;font-family: bnazanb;width: 100%;height: 100%;color: rgb(255,255,255);padding-bottom: 0;margin-bottom: 0;"></h5>
+                </div>
+            </main>
 
+        </body>
 
-
-            <div id="massage-box" class="alert alert-success text-end" role="alert" style="position:fixed;display: none;top: 90%;left: 68%;z-index: 101;width: 30%;margin: 0px;margin-right: 20px;border-radius: 15px;height: 50px;padding-bottom: 20px;background: var(--bs-green);box-shadow: 0px 0px 5px 2px var(--bs-green);border-style: none;">
-                <h5  class="d-flex justify-content-xl-end align-items-xl-center" style="text-align: right;font-family: bnazanb;width: 100%;height: 100%;color: rgb(255,255,255);padding-bottom: 0;margin-bottom: 0;"></h5>
-            </div>
-    </main>
-
-</body>
-
-</html>
+    </html>
