@@ -1,25 +1,27 @@
-//const baseUrl = 'http://192.168.42.114:8000/'
-const baseUrl = 'http://127.0.0.1:8000/'
-const tokenObtainPairViewUrl = baseUrl + 'api/token/'
-const tokenRefreshViewUrl = baseUrl + 'api/token/refresh/'
-const checkTokenViewUrl = baseUrl + 'api/user/checktoken/'
+// This is the backend URL(IP) you can edit and give your new backend URL
+const BackEnd_URL = 'http://127.0.0.1:8000/'
 
-const assessmentsListCreateViewUrl = baseUrl + 'api/contracts/'
-const contractRetrieveUrl = baseUrl + 'api/contracts/'
+
+const tokenObtainPairViewUrl = BackEnd_URL + 'api/token/'
+const tokenRefreshViewUrl = BackEnd_URL + 'api/token/refresh/'
+const checkTokenViewUrl = BackEnd_URL + 'api/user/checktoken/'
+
+const assessmentsListCreateViewUrl = BackEnd_URL + 'api/contracts/'
+const contractRetrieveUrl = BackEnd_URL + 'api/contracts/'
 const searchAssessmentUrl = assessmentsListCreateViewUrl
 
-const manageContractPhotoUrl = baseUrl + 'api/contracts/contract-photo/'
-const manageSupplementDocsUrl = baseUrl + 'api/contracts/supplement/'
-const managePhaseOneDocsUrl = baseUrl + 'api/contracts/phase-one/'
-const managePhaseTwoDocsUrl = baseUrl + 'api/contracts/phase-two/'
+const manageContractPhotoUrl = BackEnd_URL + 'api/contracts/contract-photo/'
+const manageSupplementDocsUrl = BackEnd_URL + 'api/contracts/supplement/'
+const managePhaseOneDocsUrl = BackEnd_URL + 'api/contracts/phase-one/'
+const managePhaseTwoDocsUrl = BackEnd_URL + 'api/contracts/phase-two/'
 
 
 
-const getUsernameUrl = baseUrl + 'api/user/getusername/'
-const changeUsernameUrl = baseUrl + 'api/user/changeusername/'
-const changeUsernameAndPasswordUrl = baseUrl + 'api/user/changeuserpass/'
-const isAdminUrl = baseUrl + 'api/user/isAdmin/'
-const createUserUrl = baseUrl + 'api/user/createuser/'
+const getUsernameUrl = BackEnd_URL + 'api/user/getusername/'
+const changeUsernameUrl = BackEnd_URL + 'api/user/changeusername/'
+const changeUsernameAndPasswordUrl = BackEnd_URL + 'api/user/changeuserpass/'
+const isAdminUrl = BackEnd_URL + 'api/user/isAdmin/'
+const createUserUrl = BackEnd_URL + 'api/user/createuser/'
 
 
 function myAlert(massage,succ){
